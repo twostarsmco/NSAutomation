@@ -15,22 +15,22 @@ namespace Command
         }
 
         //TODO: implement macro that calls another macro
-        //public IList<ICommand> Flatten()
-        //{
-        //    List<ICommand> commandsFlat = new List<ICommand>();
-        //    foreach (var command in this.commands)
-        //    {
-        //        if (command is Macro)
-        //        {
-        //            commandsFlat.AddRange(((Macro)command).Flatten());
-        //        }
-        //        else
-        //        {
-        //            commandsFlat.Add(command);
-        //        }
-        //    }
-        //    return commandsFlat;
-        //}
+        public IList<ICommand> Flatten()
+        {
+            List<ICommand> commandsFlat = new List<ICommand>();
+            foreach (var command in this.Commands)
+            {
+                if (command is Macro)
+                {
+                    commandsFlat.AddRange(((Macro)command).Flatten());
+                }
+                else
+                {
+                    commandsFlat.Add(command);
+                }
+            }
+            return commandsFlat;
+        }
 
     }
 }

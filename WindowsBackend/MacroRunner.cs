@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 
 using Common;
 using Command;
@@ -13,10 +12,28 @@ namespace WindowsBackend
             this.OutputPort = outputPort;
         }
 
-        public override void Run(ICommand command)
+        public override void Run(Macro macro)
         {
-            throw new NotImplementedException();
+            this.RunAsync(macro).Wait();
         }
 
+        //TODO: Use MultimediaTimer or something like that to achieve better timing accuracy
+
+        public override async Task RunAsync(Macro macro)
+        {
+            var commands = macro.Flatten();
+            foreach (var command in commands)
+            {
+                switch (command)
+                {
+                    case Wait w:
+                        await Task.Delay(w.WaitTime);
+                        break;
+                    case OperateCommandBase c:
+                        this.OutputPort.Send(c);
+                        break;
+                }
+            }
+        }
     }
 }
