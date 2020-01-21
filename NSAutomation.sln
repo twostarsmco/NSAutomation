@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTests", "CommonTests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsBackendTests", "WindowsBackendTests\WindowsBackendTests.csproj", "{7981FD93-F59D-42FE-8A62-079D986332D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSAutomationWin", "NSAutomationWin\NSAutomationWin.csproj", "{32B5C48F-59E5-4E6C-BB70-457DB3FACED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSAutomationWinTests", "NSAutomationWinTests\NSAutomationWinTests.csproj", "{A81DF92C-3F2A-4E95-8A4A-0904894C18F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{7981FD93-F59D-42FE-8A62-079D986332D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7981FD93-F59D-42FE-8A62-079D986332D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7981FD93-F59D-42FE-8A62-079D986332D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32B5C48F-59E5-4E6C-BB70-457DB3FACED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32B5C48F-59E5-4E6C-BB70-457DB3FACED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32B5C48F-59E5-4E6C-BB70-457DB3FACED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32B5C48F-59E5-4E6C-BB70-457DB3FACED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A81DF92C-3F2A-4E95-8A4A-0904894C18F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81DF92C-3F2A-4E95-8A4A-0904894C18F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81DF92C-3F2A-4E95-8A4A-0904894C18F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81DF92C-3F2A-4E95-8A4A-0904894C18F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
