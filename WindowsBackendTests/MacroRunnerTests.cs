@@ -16,7 +16,7 @@ namespace WindowsBackend.Tests
                 new OperateButton(ButtonID.A, ButtonState.RELEASE),
             });
 
-            MacroRunner runner = new MacroRunner(new MockPort());
+            MacroRunner runner = new MacroRunner(new Common.MockPort());
             await runner.RunAsync(m);
 
         }
