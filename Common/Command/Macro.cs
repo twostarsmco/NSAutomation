@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace Command
@@ -13,6 +14,8 @@ namespace Command
         {
             this.Commands = commands.ToArray() ?? new ICommand[] { };
         }
+
+        public string Description { get; set; }
 
         //TODO: implement macro that calls another macro
         public IList<ICommand> Flatten()
@@ -32,5 +35,9 @@ namespace Command
             return commandsFlat;
         }
 
+        public override string ToString()
+        {
+            return string.Join("\r\n", this.Commands.Select(command => command.ToString()));
+        }
     }
 }
