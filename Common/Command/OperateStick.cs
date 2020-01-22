@@ -8,6 +8,8 @@ namespace Command
     {
         private byte[] commandBytes;
         public override byte[] CommandBytes { get { return commandBytes; } }
+        [JsonIgnore]
+        public StickID StickID { get { return (StickID)Enum.ToObject(typeof(StickID), this.TargetControlID); } }
         public byte TargetXAngle { get; private set; }
         public byte TargetYAngle { get; private set; }
         public OperateStick(StickID targetStick, byte targetXAngle, byte targetYAngle) : base((byte)targetStick)
@@ -31,6 +33,12 @@ namespace Command
             this.TargetXAngle = targetXAngle;
             this.TargetYAngle = targetYAngle;
             this.commandBytes = new byte[] { this.TargetControlID, this.TargetXAngle, this.TargetYAngle };
+        }
+
+        
+        public override string ToString()
+        {
+            return $"{(StickID)Enum.ToObject(typeof(StickID), this.TargetControlID)} ({this.TargetXAngle}, {this.TargetYAngle})";
         }
     }
 

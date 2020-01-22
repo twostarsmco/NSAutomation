@@ -6,25 +6,51 @@ using Command;
 
 namespace WindowsBackend
 {
-    public class OutputPort : Common.IOutputPort, IDisposable
+    public class OutputPort : IOutputPort, IDisposable
     {
-        private readonly SerialPort port;
+        private SerialPort port = new SerialPort();
 
-        public OutputPort(string comPortName) 
+        private object Locker = new object();
+
+        public OutputPort(string comPortName)
         {
-            this.port = new SerialPort(comPortName)
-            {
-                BaudRate = 115200,
-                Parity = Parity.None,
-                DataBits = 8,
-                StopBits = StopBits.One
-            };
-            this.port.Open();
+            this.PortName = comPortName;
         }
+
+
         void IOutputPort.Send(OperateCommandBase command)
         {
             this.port.Write(command.CommandBytes, 0, command.CommandBytes.Length);
         }
+
+        public string PortName {
+            get 
+            {
+                lock (this.Locker)
+                {
+                    return this.port.PortName;
+                }
+            }
+            set 
+            {
+                lock (this.Locker)
+                {
+                    if (this.port.PortName != value)
+                    {
+                        this.port?.Dispose();
+                        this.port = new SerialPort(value)
+                        {
+                            BaudRate = 115200,
+                            Parity = Parity.None,
+                            DataBits = 8,
+                            StopBits = StopBits.One
+                        };
+                        this.port.Open();
+                    }
+                }
+            }
+        }
+
 
         #region IDisposable Support
         private bool disposedValue = false; // 重複する呼び出しを検出するには

@@ -40,6 +40,15 @@ namespace CommonTests
             }
         }
 
+        [TestMethod()]
+        public void ToStringTest()
+        {
+            var pressA = new Macro(new ICommand[] {
+                new OperateButton(ButtonID.A, ButtonState.PRESS),
+                new OperateButton(ButtonID.A, ButtonState.RELEASE)
+            });
+            Assert.AreEqual("PRESS A\r\nRELEASE A", pressA.ToString());
+        }
         /// <summary>
         /// A sample code to generate KONAMI command sequence.
         /// Note that, as of now, this is not likely to work

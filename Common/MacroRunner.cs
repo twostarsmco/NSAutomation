@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 
 using Command;
 
@@ -12,7 +11,8 @@ namespace Common
         {
             this.OutputPort = outputPort;
         }
-        public abstract void Run(ICommand command);
+        public abstract void Run(Macro macro);
 
+        public abstract Task RunAsync(Macro macro);
     }
 }

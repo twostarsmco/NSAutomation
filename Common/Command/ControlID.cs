@@ -2,6 +2,7 @@
 {
     public enum ButtonID : byte
     {
+        None = 255,
         RIGHT = 0,
         LEFT = 1,
         UP = 2,
