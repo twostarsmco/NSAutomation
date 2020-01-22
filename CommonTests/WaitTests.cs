@@ -22,5 +22,15 @@ namespace CommonTests
 
             Assert.AreEqual(waitCommand.WaitTime, waitFromJson.WaitTime);
         }
+
+
+        [TestMethod()]
+        public void ToStringTest()
+        {
+            var wait = new Wait(365);
+            Assert.AreEqual("Wait 365", wait.ToString());
+        }
     }
+
+
 }

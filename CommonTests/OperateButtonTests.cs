@@ -18,5 +18,12 @@ namespace CommonTests
             Assert.AreEqual(ob.TargetControlID, obFromJson.TargetControlID);
             Assert.AreEqual(ob.TargetState, obFromJson.TargetState);
         }
+
+        [TestMethod()]
+        public void ToStringTest()
+        {
+            var ob = new OperateButton(ButtonID.A, ButtonState.PRESS);
+            Assert.AreEqual("PRESS A", ob.ToString());
+        }
     }
 }
