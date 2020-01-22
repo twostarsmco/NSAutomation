@@ -29,19 +29,31 @@ namespace NSAutomationWin
             this.Runner = runner;
 
             //Set available SerialPorts
-            this.PortSelectComboBox.Items.Add("");
-            this.PortSelectComboBox.Items.AddRange(SerialPort.GetPortNames());
-            if (config.Online)
+            var cbxItems = this.PortSelectComboBox.Items;
+            cbxItems.Add("");
+            cbxItems.AddRange(SerialPort.GetPortNames());
+            if (config.Online && cbxItems.Contains(config.COMPort.ToString()))
             {
-
+                this.PortSelectComboBox.SelectedItem = config.COMPort.ToString();
+            }
+            else
+            {
+                this.PortSelectComboBox.SelectedItem = "";
             }
         }
 
 
         private void SetPort(string comPortName) 
         {
-            
-            if (Config.Online)
+            try
+            {
+                if (comPortName != "")
+                {
+                    this.Port.PortName = comPortName;
+                    Config.Online = true;
+                }
+            }
+            catch (Exception)
             {
 
             }
@@ -53,5 +65,15 @@ namespace NSAutomationWin
             System.Diagnostics.Debug.Print($"{DateTime.Now.ToString("hh:mm:ss.fff")}\t{e.ButtonID}\t{e.ButtonState}");
         }
 
+        private void PortSelectComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.SetPort(this.PortSelectComboBox.SelectedItem.ToString());
+        }
+
+        private async void RunButton_Click(object sender, EventArgs e)
+        {
+            Macro macro = this.macroDesigner1.OutputCurrentMacro();
+            await this.Runner.RunAsync(macro);  // TODO: show progress of macro
+        }
     }
 }

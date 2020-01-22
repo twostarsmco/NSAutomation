@@ -31,6 +31,7 @@ namespace NSAutomationWin
                     throw ex;
                 }
             }
+            config.AutoSave = true;
 
             IOutputPort port;
             try

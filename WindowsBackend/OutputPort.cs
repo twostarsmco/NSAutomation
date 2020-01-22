@@ -37,7 +37,7 @@ namespace WindowsBackend
                 {
                     if (this.port.PortName != value)
                     {
-                        this.port.Dispose();
+                        this.port?.Dispose();
                         this.port = new SerialPort(value)
                         {
                             BaudRate = 115200,
