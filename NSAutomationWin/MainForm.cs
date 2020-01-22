@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 using Common;
+using Command;
 
 namespace NSAutomationWin
 {
@@ -25,6 +27,14 @@ namespace NSAutomationWin
             this.Config = config;
             this.Port = port;
             this.Runner = runner;
+
+            //Set available SerialPorts
+            this.PortSelectComboBox.Items.Add("");
+            this.PortSelectComboBox.Items.AddRange(SerialPort.GetPortNames());
+            if (config.Online)
+            {
+
+            }
         }
 
 
@@ -37,21 +47,11 @@ namespace NSAutomationWin
             }
         }
 
-        private void buttonStateSelector1_ButtonStateChanged(object sender, ButtonStateChangedEventArgs e)
-        {
-            if (e.ButtonState == Command.ButtonState.PRESS)
-            {
-                System.Diagnostics.Debug.Print($"{e.ButtonID.ToString()} pressed.");
-            }
-            else if (e.ButtonState == Command.ButtonState.RELEASE)
-            {
-                System.Diagnostics.Debug.Print($"{e.ButtonID.ToString()} released.");
-            }
-        }
 
         private void JC_ButtonStateChanged(object sender, ButtonStateChangedEventArgs e)
         {
             System.Diagnostics.Debug.Print($"{DateTime.Now.ToString("hh:mm:ss.fff")}\t{e.ButtonID}\t{e.ButtonState}");
         }
+
     }
 }

@@ -56,12 +56,26 @@
     <Compile Include="ButtonStateSelector.Designer.cs">
       <DependentUpon>ButtonStateSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommandEditDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommandEditDialog.Designer.cs">
+      <DependentUpon>CommandEditDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommandWrapper.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="DataGridViewExtension.cs" />
     <Compile Include="JCPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="JCPanel.Designer.cs">
       <DependentUpon>JCPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MacroDesigner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MacroDesigner.Designer.cs">
+      <DependentUpon>MacroDesigner.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -74,8 +88,14 @@
     <EmbeddedResource Include="ButtonStateSelector.resx">
       <DependentUpon>ButtonStateSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CommandEditDialog.resx">
+      <DependentUpon>CommandEditDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="JCPanel.resx">
       <DependentUpon>JCPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MacroDesigner.resx">
+      <DependentUpon>MacroDesigner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -90,6 +110,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\CommandWrapper.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
