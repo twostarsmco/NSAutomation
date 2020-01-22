@@ -1,23 +1,22 @@
-﻿namespace Command
-{
-    /// <summary>
-    /// A command that halts the execution of following command 
-    /// for specified duration of time.
-    /// </summary>
-    public class Wait : ICommand
-    {
-        /// <summary>
-        /// The number of milliseconds to wait
-        /// </summary>
-        public int WaitTime { get; private set; }
+﻿using System.IO;
 
-        /// <summary>
-        /// Initializes a new instance of class.
-        /// </summary>
-        /// <param name="waitTime">The number of milliseconds to wait</param>
-        public Wait(int waitTime)
+namespace Command
+{
+
+    public class ExternalMacro : Macro
+    {
+        public string MacroFilePath { get; }
+
+        public ExternalMacro(string macroFilePath, string basePath) :
+            base(null)//, Path.GetDirectoryName(Path.Combine(basePath, macroFilePath)))
         {
-            this.WaitTime = waitTime;
+            this.MacroFilePath = macroFilePath;
+        }
+
+        public override string ToString()
+        {
+            return this.MacroFilePath;
         }
     }
 }
+
