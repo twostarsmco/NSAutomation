@@ -20,19 +20,28 @@ namespace NSAutomationWin
     /// </summary>
     public partial class CommandEditDialog : Form
     {
+        /// <summary>
+        /// A ICommand instance being edited on this form.
+        /// This is updated based on form's state, only when OK button is pressed.
+        /// </summary>
         public ICommand EditedCommand;
 
-        public CommandEditDialog():this(new Wait(0))
-        {
 
-        }
-        
+        /// <summary>
+        /// Instantinate this form with default "Wait 0" command displayed.
+        /// </summary>
+        public CommandEditDialog() : this(new Wait(0)) { }
+
+
+        /// <summary>
+        /// Instantinate this form with given command displayed.
+        /// </summary>
+        /// <param name="commandToEdit">A command to edit. Initially displayed as-is on this form.</param>
         public CommandEditDialog(ICommand commandToEdit)
         {
             InitializeComponent();
 
             this.EditedCommand = commandToEdit;
-
         }
 
         private void OKButton_Click(object sender, EventArgs e)
@@ -71,6 +80,12 @@ namespace NSAutomationWin
             this.Close();
         }
 
+
+        /// <summary>
+        /// Upon loading, change initially displayed tab and its content according to given command.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CommandEditDialog_Load(object sender, EventArgs e)
         {
             ButtonComboBox.DataSource = Enum.GetValues(typeof(Command.ButtonID));
@@ -102,16 +117,32 @@ namespace NSAutomationWin
                     break;
             }
         }
+
+
+        /// <summary>
+        /// A method to adjust location of this form.
+        /// </summary>
         private void AdjustDialogLocation()
         { }
 
 
-
+        /// <summary>
+        /// A static method that opens an instance of this form,
+        /// then returns a command that is edited on it.
+        /// </summary>
+        /// <returns>An instance of ICommand. Returns null if cancel button is pressed.</returns>
         public static ICommand CreateNewCommandFromDialog()
         {
             return CreateNewCommandFromDialog(new Wait(0));
         }
 
+
+        /// <summary>
+        /// A static method that opens an instance of this form, displays given command,
+        /// then returns a command that is edited on it.
+        /// </summary>
+        /// <param name="existingCommand"></param>
+        /// <returns>An instance of ICommand. Returns null if cancel button is pressed.</returns>
         public static ICommand CreateNewCommandFromDialog(ICommand existingCommand)
         {
             using (var dialog = new CommandEditDialog(existingCommand))

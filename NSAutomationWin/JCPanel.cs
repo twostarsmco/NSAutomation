@@ -12,10 +12,15 @@ using Command;
 
 namespace NSAutomationWin
 {
+    /// <summary>
+    /// A UserControl that simulates controller of the device.
+    /// </summary>
     public partial class JCPanel : UserControl
     {
         // TODO: Control sticks
-
+        /// <summary>
+        /// A event raised when state of any one of button is changed.
+        /// </summary>
         public event EventHandler<ButtonStateChangedEventArgs> ButtonStateChanged;
 
         public JCPanel()

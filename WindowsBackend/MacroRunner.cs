@@ -5,8 +5,15 @@ using Command;
 
 namespace WindowsBackend
 {
+    /// <summary>
+    /// A concrete implementation of a class that runs Macro.
+    /// </summary>
     public class MacroRunner : Common.MacroRunner
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="outputPort">A port to output bytes to perform commands.param>
         public MacroRunner(IOutputPort outputPort) : base(outputPort)
         {
             this.OutputPort = outputPort;
@@ -18,7 +25,11 @@ namespace WindowsBackend
         }
 
         //TODO: Use MultimediaTimer or something like that to achieve better timing accuracy
-
+        /// <summary>
+        /// Run a macro asynchronously.
+        /// </summary>
+        /// <param name="macro">A macro to run.</param>
+        /// <returns></returns>
         public override async Task RunAsync(Macro macro)
         {
             var commands = macro.Flatten();

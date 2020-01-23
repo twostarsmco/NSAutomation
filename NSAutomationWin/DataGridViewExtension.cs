@@ -4,6 +4,12 @@ namespace MyExtensionMethods
 {
     public static class DataGridViewExtension
     {
+        /// <summary>
+        /// A method to offset currently selected range on DataGridView.
+        /// </summary>
+        /// <param name="dgv">An instance of DataGridView</param>
+        /// <param name="offsetRow">Amount of offset in number of rows</param>
+        /// <param name="offsetColumn">Amount of offset in number of columns</param>
         public static void OffsetSelectedRange(this DataGridView dgv, int offsetRow, int offsetColumn)
         {
             DataGridViewCell[] deselectCells = new DataGridViewCell[dgv.SelectedCells.Count];
