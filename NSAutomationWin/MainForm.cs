@@ -76,9 +76,23 @@ namespace NSAutomationWin
         }
 
 
-        private void JC_ButtonStateChanged(object sender, ButtonStateChangedEventArgs e)
+        private async void JC_ButtonStateChanged(object sender, ButtonStateChangedEventArgs e)
         {
-            System.Diagnostics.Debug.Print($"{DateTime.Now.ToString("hh:mm:ss.fff")}\t{e.ButtonID}\t{e.ButtonState}");
+            Macro macro;
+            if (e.IsOnePush)
+            {
+                macro = new Macro(new ICommand[]
+                {
+                new OperateButton(e.ButtonID, Command.ButtonState.PRESS),
+                new Wait(30),
+                new OperateButton(e.ButtonID, Command.ButtonState.RELEASE),
+                });
+            }
+            else
+            {
+                macro = new Macro(new ICommand[] { new OperateButton(e.ButtonID, e.ButtonState) });
+            }
+            await this.Runner.RunAsync(macro, new CancellationToken(), 1);
         }
 
         private void PortSelectComboBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -60,20 +60,23 @@ namespace NSAutomationWin
 
         private void ButtonStateSelectCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.ButtonStateSelectCheckBox.Checked)
+            Command.ButtonState newState =
+                this.ButtonStateSelectCheckBox.Checked ?
+                Command.ButtonState.PRESS : Command.ButtonState.RELEASE;
+            if (this.HoldCheckBox.Checked)
             {
                 ButtonStateChanged?.Invoke(this, new ButtonStateChangedEventArgs(
-                    this.ButtonID, Command.ButtonState.PRESS));
-                if (!this.HoldCheckBox.Checked && this.ButtonStateSelectCheckBox.Checked)
-                {
-                    this.ButtonStateSelectCheckBox.Checked = false;
-                }
+                    this.ButtonID, newState, isOnePush: false));
             }
             else
             {
-                ButtonStateChanged?.Invoke(this, new ButtonStateChangedEventArgs(
-                    this.ButtonID, Command.ButtonState.RELEASE));
+                var ea = new ButtonStateChangedEventArgs(this.ButtonID, Command.ButtonState.PRESS, isOnePush: true);
+                ButtonStateChanged?.Invoke(this, ea);
+                this.ButtonStateSelectCheckBox.CheckedChanged -= ButtonStateSelectCheckBox_CheckedChanged;
+                this.ButtonStateSelectCheckBox.Checked = false;
+                this.ButtonStateSelectCheckBox.CheckedChanged += ButtonStateSelectCheckBox_CheckedChanged;
             }
+
         }
 
 

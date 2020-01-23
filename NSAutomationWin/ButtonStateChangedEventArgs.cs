@@ -19,15 +19,22 @@ namespace NSAutomationWin
         /// </summary>
         public ButtonState ButtonState { get; }
 
+
+        /// <summary>
+        /// Whether this event is intended as push, rather than holding and releasing a button.
+        /// </summary>
+        public bool IsOnePush { get; }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="buttonID">An ID of button that changed its state.</param>
         /// <param name="state">A state of button to which change occured.</param>
-        public ButtonStateChangedEventArgs(ButtonID buttonID, ButtonState state)
+        public ButtonStateChangedEventArgs(ButtonID buttonID, ButtonState state, bool isOnePush)
         {
             this.ButtonID = buttonID;
             this.ButtonState = state;
+            this.IsOnePush = isOnePush;
         }
     }
 }

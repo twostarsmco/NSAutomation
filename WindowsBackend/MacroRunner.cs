@@ -11,6 +11,8 @@ namespace WindowsBackend
     /// </summary>
     public class MacroRunner : Common.MacroRunner
     {
+        private Semaphore Semaphore = new Semaphore(1, 1);
+
         /// <summary>
         /// 
         /// </summary>
@@ -31,28 +33,36 @@ namespace WindowsBackend
         /// <returns></returns>
         public override async Task RunAsync(Macro macro, CancellationToken token, int loopCount)
         {
-            bool runInfinitely = (loopCount < 1);
-            var commands = macro.Flatten();
-            int i = 0;
-            do
+            Semaphore.WaitOne();
+
+            try
             {
-                i++;
-
-                foreach (var command in commands)
+                bool runInfinitely = (loopCount < 1);
+                var commands = macro.Flatten();
+                int i = 0;
+                do
                 {
-                    switch (command)
-                    {
-                        case Wait w:
-                            await Task.Delay(w.WaitTime);
-                            break;
-                        case OperateCommandBase c:
-                            this.OutputPort.Send(c);
-                            break;
-                    }
-                    if (token.IsCancellationRequested) return;
-                }
-            } while (i < loopCount || runInfinitely);
+                    i++;
 
+                    foreach (var command in commands)
+                    {
+                        switch (command)
+                        {
+                            case Wait w:
+                                await Task.Delay(w.WaitTime);
+                                break;
+                            case OperateCommandBase c:
+                                this.OutputPort.Send(c);
+                                break;
+                        }
+                        if (token.IsCancellationRequested) return;
+                    }
+                } while (i < loopCount || runInfinitely);
+            }
+            finally
+            {
+                Semaphore.Release();
+            }
         }
     }
 }
