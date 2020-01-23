@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.IO.Ports;
@@ -17,6 +19,9 @@ namespace NSAutomationWin
         private IOutputPort Port;
 
         private MacroRunner Runner;
+
+        private CancellationTokenSource CancellationToken;
+
         public MainForm(Config config, IOutputPort port, MacroRunner runner)
         {
             InitializeComponent();
@@ -54,6 +59,22 @@ namespace NSAutomationWin
             }
         }
 
+        private async Task Run()
+        {
+            Macro macro = this.macroDesigner1.CurrentMacro;
+            this.CancellationToken = new CancellationTokenSource();
+            var token = this.CancellationToken.Token;
+
+            int loopCount = this.LoopCheckBox.Checked? 0: 1;
+            await this.Runner.RunAsync(macro, token, loopCount);  // TODO: show progress of macro
+        }
+
+
+        private void Cancel()
+        {
+            this.CancellationToken.Cancel();
+        }
+
 
         private void JC_ButtonStateChanged(object sender, ButtonStateChangedEventArgs e)
         {
@@ -65,10 +86,22 @@ namespace NSAutomationWin
             this.SetPort(this.PortSelectComboBox.SelectedItem.ToString());
         }
 
-        private async void RunButton_Click(object sender, EventArgs e)
+
+        private async void RunCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Macro macro = this.macroDesigner1.CurrentMacro;
-            await this.Runner.RunAsync(macro);  // TODO: show progress of macro
+
+            var checkbox = ((CheckBox)sender);
+            if (checkbox.Checked)
+            {
+                await this.Run();
+                checkbox.CheckedChanged -= RunCheckBox_CheckedChanged;
+                checkbox.Checked = false;
+                checkbox.CheckedChanged += RunCheckBox_CheckedChanged;
+            }
+            else
+            {
+                this.Cancel();
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -120,5 +153,6 @@ namespace NSAutomationWin
                 MessageBox.Show(ex.ToString(), "Failed to load a file", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

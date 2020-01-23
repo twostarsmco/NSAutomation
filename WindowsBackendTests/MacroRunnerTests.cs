@@ -17,7 +17,8 @@ namespace WindowsBackend.Tests
             });
 
             MacroRunner runner = new MacroRunner(new Common.MockPort());
-            await runner.RunAsync(m);
+
+            await runner.RunAsync(m, new System.Threading.CancellationToken());
 
         }
     }

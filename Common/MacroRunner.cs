@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 using Command;
 
@@ -27,17 +28,12 @@ namespace Common
 
 
         /// <summary>
-        /// Run a macro synchronously.
-        /// </summary>
-        /// <param name="macro">A macro to run.</param>
-        public abstract void Run(Macro macro);
-
-
-        /// <summary>
         /// Run a macro (hopefully) asynchronously.
         /// </summary>
         /// <param name="macro">A macro to run.</param>
+        /// <param name="token">A CancellationToken to stop running macro.</param>
+        /// <param name="loopCount">The numbre of loop. Infinitely loops if less than 1</param>
         /// <returns></returns>
-        public abstract Task RunAsync(Macro macro);
+        public abstract Task RunAsync(Macro macro, CancellationToken token, int loopCount);
     }
 }
