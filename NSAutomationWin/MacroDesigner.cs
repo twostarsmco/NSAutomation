@@ -29,13 +29,34 @@ namespace NSAutomationWin
         }
 
 
-        public Macro OutputCurrentMacro()
+        public Macro CurrentMacro
         {
-            ICommand[] commands = this.Commands.Select(c => c.Command).ToArray();
-            var macro = new Macro(commands);
-            // TODO: Insert Description property here
+            get
+            { 
+                ICommand[] commands = this.Commands.Select(c => c.Command).ToArray();
+                var macro = new Macro(commands);
+                // TODO: Insert Description property here
 
-            return macro;
+                return macro;
+            }
+            set
+            {
+                try
+                {
+                    this.Commands.RaiseListChangedEvents = false;
+                    this.Commands.Clear();
+                    foreach (var c in value.Commands)
+                    {
+                        this.Commands.Add(new CommandWrapper(c));
+                    }
+                }
+                finally
+                {
+                    this.Commands.RaiseListChangedEvents = true;
+                    this.Commands.ResetBindings();
+                }
+                // TODO: Insert Description property here
+            }
         }
 
 

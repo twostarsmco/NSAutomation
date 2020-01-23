@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using System.IO.Ports;
+
+using Newtonsoft.Json;
 
 using Common;
 using Command;
@@ -47,10 +43,9 @@ namespace NSAutomationWin
         {
             try
             {
-                if (comPortName != "")
+                if (Config.Online)
                 {
                     this.Port.PortName = comPortName;
-                    Config.Online = true;
                 }
             }
             catch (Exception)
@@ -72,8 +67,58 @@ namespace NSAutomationWin
 
         private async void RunButton_Click(object sender, EventArgs e)
         {
-            Macro macro = this.macroDesigner1.OutputCurrentMacro();
+            Macro macro = this.macroDesigner1.CurrentMacro;
             await this.Runner.RunAsync(macro);  // TODO: show progress of macro
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SaveFileDialog sfd = new SaveFileDialog()
+                { Filter = "JSON file|*.json|All Files|*.*" })
+                {
+                    sfd.ShowDialog();
+                    if (sfd.FileName != "")
+                    {
+                        var jss = new JsonSerializerSettings()
+                        {
+                            TypeNameHandling = TypeNameHandling.Auto,
+                            Formatting = Formatting.Indented
+                        };
+                        var macro = macroDesigner1.CurrentMacro;
+                        string macroJson = JsonConvert.SerializeObject(macro, jss);
+                        File.WriteAllText(sfd.FileName, macroJson);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Failed to save a file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string macroJson = "";
+                using (OpenFileDialog ofd = new OpenFileDialog()
+                { Filter = "JSON file|*.json|All Files|*.*" })
+                {
+                    ofd.ShowDialog();
+                    if (ofd.FileName == "") return;
+
+                    macroJson = File.ReadAllText(ofd.FileName);
+                }
+                var macro = JsonConvert.DeserializeObject<Macro>(
+                    macroJson,new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+                this.macroDesigner1.CurrentMacro = macro;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Failed to load a file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
