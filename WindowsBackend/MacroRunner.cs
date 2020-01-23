@@ -29,7 +29,7 @@ namespace WindowsBackend
         /// <param name="token">A CancellationToken to stop running macro.</param>
         /// <param name="loopCount">The numbre of loop. Infinitely loops if less than 1</param>
         /// <returns></returns>
-        public override async Task RunAsync(Macro macro, CancellationToken token, int loopCount = 1)
+        public override async Task RunAsync(Macro macro, CancellationToken token, int loopCount)
         {
             bool runInfinitely = (loopCount < 1);
             var commands = macro.Flatten();
