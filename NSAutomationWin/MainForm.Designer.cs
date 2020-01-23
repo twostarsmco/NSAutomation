@@ -36,12 +36,10 @@
             this.RunButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
-            this.MacroDataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
             this.SplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MacroDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // SplitContainer
@@ -65,7 +63,6 @@
             this.SplitContainer.Panel2.Controls.Add(this.RunButton);
             this.SplitContainer.Panel2.Controls.Add(this.SaveButton);
             this.SplitContainer.Panel2.Controls.Add(this.LoadButton);
-            this.SplitContainer.Panel2.Controls.Add(this.MacroDataGridView);
             this.SplitContainer.Size = new System.Drawing.Size(986, 540);
             this.SplitContainer.SplitterDistance = 455;
             this.SplitContainer.SplitterWidth = 3;
@@ -86,16 +83,16 @@
             this.macroDesigner1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.macroDesigner1.Location = new System.Drawing.Point(10, 12);
+            this.macroDesigner1.Location = new System.Drawing.Point(2, 2);
             this.macroDesigner1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.macroDesigner1.Name = "macroDesigner1";
-            this.macroDesigner1.Size = new System.Drawing.Size(415, 378);
+            this.macroDesigner1.Size = new System.Drawing.Size(443, 536);
             this.macroDesigner1.TabIndex = 6;
             // 
             // PortSelectComboBox
             // 
             this.PortSelectComboBox.FormattingEnabled = true;
-            this.PortSelectComboBox.Location = new System.Drawing.Point(448, 61);
+            this.PortSelectComboBox.Location = new System.Drawing.Point(450, 61);
             this.PortSelectComboBox.Name = "PortSelectComboBox";
             this.PortSelectComboBox.Size = new System.Drawing.Size(75, 20);
             this.PortSelectComboBox.TabIndex = 5;
@@ -105,7 +102,7 @@
             // 
             this.LoopCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LoopCheckBox.AutoSize = true;
-            this.LoopCheckBox.Location = new System.Drawing.Point(480, 116);
+            this.LoopCheckBox.Location = new System.Drawing.Point(475, 116);
             this.LoopCheckBox.Name = "LoopCheckBox";
             this.LoopCheckBox.Size = new System.Drawing.Size(48, 16);
             this.LoopCheckBox.TabIndex = 4;
@@ -115,7 +112,7 @@
             // RunButton
             // 
             this.RunButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RunButton.Location = new System.Drawing.Point(453, 87);
+            this.RunButton.Location = new System.Drawing.Point(450, 87);
             this.RunButton.Name = "RunButton";
             this.RunButton.Size = new System.Drawing.Size(75, 23);
             this.RunButton.TabIndex = 3;
@@ -126,7 +123,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(453, 32);
+            this.SaveButton.Location = new System.Drawing.Point(450, 32);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 2;
@@ -136,25 +133,12 @@
             // LoadButton
             // 
             this.LoadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LoadButton.Location = new System.Drawing.Point(453, 3);
+            this.LoadButton.Location = new System.Drawing.Point(450, 2);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(75, 23);
             this.LoadButton.TabIndex = 1;
             this.LoadButton.Text = "Load";
             this.LoadButton.UseVisualStyleBackColor = true;
-            // 
-            // MacroDataGridView
-            // 
-            this.MacroDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MacroDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MacroDataGridView.Location = new System.Drawing.Point(3, 3);
-            this.MacroDataGridView.Name = "MacroDataGridView";
-            this.MacroDataGridView.RowHeadersWidth = 51;
-            this.MacroDataGridView.RowTemplate.Height = 21;
-            this.MacroDataGridView.Size = new System.Drawing.Size(444, 534);
-            this.MacroDataGridView.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -170,7 +154,6 @@
             this.SplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
             this.SplitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.MacroDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -178,7 +161,6 @@
         #endregion
         private System.Windows.Forms.SplitContainer SplitContainer;
         private JCPanel JC;
-        private System.Windows.Forms.DataGridView MacroDataGridView;
         private System.Windows.Forms.CheckBox LoopCheckBox;
         private System.Windows.Forms.Button RunButton;
         private System.Windows.Forms.Button SaveButton;
