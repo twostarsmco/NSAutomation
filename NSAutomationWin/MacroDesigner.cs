@@ -17,8 +17,9 @@ namespace NSAutomationWin
         {
             InitializeComponent();
             this.Commands.Add(new CommandWrapper(new OperateButton(ButtonID.A, Command.ButtonState.PRESS)));
-            this.Commands.Add(new CommandWrapper(new Wait(100)));
+            this.Commands.Add(new CommandWrapper(new Wait(500)));
             this.Commands.Add(new CommandWrapper(new OperateButton(ButtonID.A, Command.ButtonState.RELEASE)));
+            this.Commands.Add(new CommandWrapper(new Wait(500)));
 
             this.CommandsDataGridView.DataSource = this.Commands;
         }
