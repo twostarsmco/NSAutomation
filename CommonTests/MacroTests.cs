@@ -12,14 +12,10 @@ namespace CommonTests
         [TestMethod]
         public void JsonSerializationTest()
         {
-            var jss = new JsonSerializerSettings()
-            {
-                TypeNameHandling = TypeNameHandling.Auto,
-                Formatting = Formatting.Indented
-            };
+            var jss = new JsonSerializerSettings() { Formatting = Formatting.Indented };
             var macro = GetKONAMICommand();
-            string macroJson = JsonConvert.SerializeObject(macro, jss);
-            var macroFromJson = JsonConvert.DeserializeObject<Macro>(macroJson, jss);
+            string macroJson = macro.ToJSON(jss);
+            var macroFromJson = Macro.FromJSON(macroJson);
 
             Assert.AreEqual(macro.Commands.Count, macroFromJson.Commands.Count);
             for (int i = 0; i < macro.Commands.Count; i++)

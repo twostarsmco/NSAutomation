@@ -49,5 +49,19 @@ namespace Command
         {
             return string.Join("\r\n", this.Commands.Select(command => command.ToString()));
         }
+
+        public string ToJSON(JsonSerializerSettings settings = null)
+        {
+            settings = settings ?? new JsonSerializerSettings() { Formatting = Formatting.Indented };
+            
+            settings.TypeNameHandling = TypeNameHandling.Auto;
+            return JsonConvert.SerializeObject(this, settings);
+        }
+
+        public static Macro FromJSON(string json)
+        {
+            return JsonConvert.DeserializeObject<Macro>(
+                json, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto });
+        }
     }
 }
