@@ -116,6 +116,7 @@ namespace NSAutomationWin
                     CancelButton_Click(this, new EventArgs());
                     break;
             }
+            this.AdjustDialogLocation();
         }
 
 
@@ -123,7 +124,9 @@ namespace NSAutomationWin
         /// A method to adjust location of this form.
         /// </summary>
         private void AdjustDialogLocation()
-        { }
+        {
+            this.Location = Cursor.Position;
+        }
 
 
         /// <summary>
@@ -157,6 +160,42 @@ namespace NSAutomationWin
                     return null;
                 }
             }
+        }
+
+        private void CommandTypeTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (this.CommandTypeTab.SelectedIndex)
+            {
+                case 0: //Wait
+                    this.ActiveControl = this.WaitTimeUpDown;
+                    break;
+
+                case 1: //Button
+                    this.ActiveControl = this.ButtonComboBox;
+                    break;
+
+                case 2: //Stick
+                    this.ActiveControl = this.StickComboBox;
+                    break;
+            }
+        }
+
+
+        /// <summary>
+        /// Handle Esc key press even when child controls are focused
+        /// https://stackoverflow.com/a/8706314/6493398
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="keyData"></param>
+        /// <returns></returns>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.CancelButton_Click(this.CancelButton, new EventArgs());
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
