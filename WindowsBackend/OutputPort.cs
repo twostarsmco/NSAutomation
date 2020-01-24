@@ -28,7 +28,10 @@ namespace WindowsBackend
 
         void IOutputPort.Send(OperateCommandBase command)
         {
-            this.port.Write(command.CommandBytes, 0, command.CommandBytes.Length);
+            if (this.port != null && this.port.IsOpen)
+            {
+                this.port.Write(command.CommandBytes, 0, command.CommandBytes.Length);
+            }
         }
 
 
@@ -49,17 +52,24 @@ namespace WindowsBackend
             {
                 lock (this.Locker)
                 {
-                    if (this.port.PortName != value)
+                    if (this.port == null || this.port.PortName != value)
                     {
                         this.port?.Dispose();
-                        this.port = new SerialPort(value)
+                        try
                         {
-                            BaudRate = 115200,
-                            Parity = Parity.None,
-                            DataBits = 8,
-                            StopBits = StopBits.One
-                        };
-                        this.port.Open();
+                            this.port = new SerialPort(value)
+                            {
+                                BaudRate = 115200,
+                                Parity = Parity.None,
+                                DataBits = 8,
+                                StopBits = StopBits.One
+                            };
+                            this.port.Open();
+                        }
+                        catch (Exception)
+                        {
+                            this.port = null;
+                        }
                     }
                 }
             }

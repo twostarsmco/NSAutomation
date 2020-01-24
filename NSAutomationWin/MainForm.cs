@@ -29,6 +29,7 @@ namespace NSAutomationWin
             this.Port = port;
             this.Runner = runner;
 
+            this.Config.AutoSave = true;
             //Set available SerialPorts
             var cbxItems = this.PortSelectComboBox.Items;
             cbxItems.Add("");
@@ -97,7 +98,20 @@ namespace NSAutomationWin
 
         private void PortSelectComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SetPort(this.PortSelectComboBox.SelectedItem.ToString());
+            string selected = this.PortSelectComboBox.SelectedItem.ToString();
+            this.SetPort(selected);
+            if (!(string.IsNullOrEmpty(selected)))
+            {
+                this.Config.Online = true;
+                this.Config.COMPort = selected;
+                this.Port.PortName = this.Config.COMPort;
+            }
+            else
+            {
+                this.Config.Online = false;
+                this.Config.COMPort = "";
+                this.Port.PortName = "";
+            }
         }
 
 
