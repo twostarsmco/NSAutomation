@@ -1,6 +1,9 @@
 ﻿namespace Command
 {
-    public interface ICommand
+    /// <summary>
+    /// A common interface for each commands in macro.
+    /// </summary>
+    public abstract class ICommand
     {
     }
 }

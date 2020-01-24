@@ -56,10 +56,15 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="CommandWrapperTests.cs" />
     <Compile Include="ConfigTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{548d7e0e-3a80-4c87-8c74-35c59cf62004}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NSAutomationWin\NSAutomationWin.csproj">
       <Project>{32B5C48F-59E5-4E6C-BB70-457DB3FACED0}</Project>
       <Name>NSAutomationWin</Name>

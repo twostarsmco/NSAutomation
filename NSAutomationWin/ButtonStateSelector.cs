@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Command;
 
 namespace NSAutomationWin
 {
+    /// <summary>
+    /// A UserControl to provide functionality of pressing and releasing a button on the device.
+    /// </summary>
     public partial class ButtonStateSelector : UserControl
     {
         // TODO:
         // - Implement keyboard shortcut
         // - When button is clicked along with Shift key, enable Hold automatically
         private ButtonID buttonID;
+
+        /// <summary>
+        /// An ID of button this instance controls.
+        /// </summary>
         public ButtonID ButtonID
         {
             get { return this.buttonID; }
@@ -29,6 +30,9 @@ namespace NSAutomationWin
         }
 
         private Keys shortcutKey;
+        /// <summary>
+        /// A key on keyboard that acts as keyboard shortcut of this instance.
+        /// </summary>
         public Keys ShortcutKey
         {
             get { return shortcutKey; }
@@ -48,26 +52,38 @@ namespace NSAutomationWin
             this.UpdateText();
         }
 
+
+        /// <summary>
+        /// A event raised when state of button on this control is changed.
+        /// </summary>
         public event EventHandler<ButtonStateChangedEventArgs> ButtonStateChanged;
 
         private void ButtonStateSelectCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.ButtonStateSelectCheckBox.Checked)
+            Command.ButtonState newState =
+                this.ButtonStateSelectCheckBox.Checked ?
+                Command.ButtonState.PRESS : Command.ButtonState.RELEASE;
+            if (this.HoldCheckBox.Checked)
             {
                 ButtonStateChanged?.Invoke(this, new ButtonStateChangedEventArgs(
-                    this.ButtonID, Command.ButtonState.PRESS));
-                if (!this.HoldCheckBox.Checked && this.ButtonStateSelectCheckBox.Checked)
-                {
-                    this.ButtonStateSelectCheckBox.Checked = false;
-                }
+                    this.ButtonID, newState, isOnePush: false));
             }
             else
             {
-                ButtonStateChanged?.Invoke(this, new ButtonStateChangedEventArgs(
-                    this.ButtonID, Command.ButtonState.RELEASE));
+                var ea = new ButtonStateChangedEventArgs(this.ButtonID, Command.ButtonState.PRESS, isOnePush: true);
+                ButtonStateChanged?.Invoke(this, ea);
+                this.ButtonStateSelectCheckBox.CheckedChanged -= ButtonStateSelectCheckBox_CheckedChanged;
+                this.ButtonStateSelectCheckBox.Checked = false;
+                this.ButtonStateSelectCheckBox.CheckedChanged += ButtonStateSelectCheckBox_CheckedChanged;
             }
+
         }
 
+
+        /// <summary>
+        /// Update this.ButtonStateSelectCheckBox.Text based on properties.
+        /// e.g. "ZL (Z)" for ZL button, with Z key on keyboard as shortcut key.
+        /// </summary>
         private void UpdateText()
         {
             string text;

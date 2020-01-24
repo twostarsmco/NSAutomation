@@ -123,6 +123,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CommandWrapper.datasource" />
@@ -150,16 +151,37 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 および x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
+    <None Include="Resources\AddRow_16x_24.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditFieldDialog_16x_24.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteCommandColumn_ActionGray_16x_24.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Paste_16x_24.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddRowToBelow_16x.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddRowToAbove_16x.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenFolder_16x_24.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save_16x_24.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Run_16x_24.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
