@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace MyExtensionMethods
+namespace NSAutomationWin
 {
     public static class DataGridViewExtension
     {

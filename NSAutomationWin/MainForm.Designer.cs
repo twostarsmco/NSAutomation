@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
-            this.JC = new NSAutomationWin.JCPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.RunCheckBox = new System.Windows.Forms.CheckBox();
-            this.macroDesigner1 = new NSAutomationWin.MacroDesigner();
             this.PortSelectComboBox = new System.Windows.Forms.ComboBox();
             this.LoopCheckBox = new System.Windows.Forms.CheckBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
+            this.JC = new NSAutomationWin.JCPanel();
+            this.macroDesigner1 = new NSAutomationWin.MacroDesigner();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
@@ -70,16 +70,6 @@
             this.SplitContainer.SplitterWidth = 3;
             this.SplitContainer.TabIndex = 1;
             // 
-            // JC
-            // 
-            this.JC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.JC.Location = new System.Drawing.Point(0, 0);
-            this.JC.Margin = new System.Windows.Forms.Padding(2);
-            this.JC.Name = "JC";
-            this.JC.Size = new System.Drawing.Size(455, 540);
-            this.JC.TabIndex = 0;
-            this.JC.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.JC_ButtonStateChanged);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.RunCheckBox);
@@ -102,17 +92,6 @@
             this.RunCheckBox.UseVisualStyleBackColor = true;
             this.RunCheckBox.CheckedChanged += new System.EventHandler(this.RunCheckBox_CheckedChanged);
             // 
-            // macroDesigner1
-            // 
-            this.macroDesigner1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.macroDesigner1.Location = new System.Drawing.Point(2, 2);
-            this.macroDesigner1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.macroDesigner1.Name = "macroDesigner1";
-            this.macroDesigner1.Size = new System.Drawing.Size(446, 536);
-            this.macroDesigner1.TabIndex = 6;
-            // 
             // PortSelectComboBox
             // 
             this.PortSelectComboBox.FormattingEnabled = true;
@@ -126,7 +105,7 @@
             // 
             this.LoopCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LoopCheckBox.AutoSize = true;
-            this.LoopCheckBox.Location = new System.Drawing.Point(478, 116);
+            this.LoopCheckBox.Location = new System.Drawing.Point(479, 116);
             this.LoopCheckBox.Name = "LoopCheckBox";
             this.LoopCheckBox.Size = new System.Drawing.Size(48, 16);
             this.LoopCheckBox.TabIndex = 4;
@@ -136,22 +115,45 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(453, 32);
+            this.SaveButton.Location = new System.Drawing.Point(450, 32);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 2;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // LoadButton
             // 
             this.LoadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LoadButton.Location = new System.Drawing.Point(453, 2);
+            this.LoadButton.Location = new System.Drawing.Point(450, 3);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(75, 23);
             this.LoadButton.TabIndex = 1;
             this.LoadButton.Text = "Load";
             this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
+            // 
+            // JC
+            // 
+            this.JC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.JC.Location = new System.Drawing.Point(0, 0);
+            this.JC.Margin = new System.Windows.Forms.Padding(2);
+            this.JC.Name = "JC";
+            this.JC.Size = new System.Drawing.Size(455, 540);
+            this.JC.TabIndex = 0;
+            this.JC.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.JC_ButtonStateChanged);
+            // 
+            // macroDesigner1
+            // 
+            this.macroDesigner1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.macroDesigner1.Location = new System.Drawing.Point(2, 2);
+            this.macroDesigner1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.macroDesigner1.Name = "macroDesigner1";
+            this.macroDesigner1.Size = new System.Drawing.Size(447, 536);
+            this.macroDesigner1.TabIndex = 6;
             // 
             // MainForm
             // 

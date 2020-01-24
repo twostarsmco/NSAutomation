@@ -24,11 +24,6 @@ namespace NSAutomationWin
             this.CommandsDataGridView.DataSource = this.Commands;
         }
 
-        private void MacroDesigner_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         public Macro CurrentMacro
         {
@@ -50,18 +45,19 @@ namespace NSAutomationWin
                     {
                         this.Commands.Add(new CommandWrapper(c));
                     }
+                    // TODO: Insert Description property here
                 }
                 finally
                 {
                     this.Commands.RaiseListChangedEvents = true;
                     this.Commands.ResetBindings();
                 }
-                // TODO: Insert Description property here
             }
         }
 
 
         #region DataGridViewOperations
+
         private void AddButton_Click(object sender, EventArgs e)
         {
             var c = CommandEditDialog.CreateNewCommandFromDialog();
@@ -97,6 +93,39 @@ namespace NSAutomationWin
             var current = this.Commands[e.RowIndex].Command;
             var cNew = CommandEditDialog.CreateNewCommandFromDialog(current);
             if (cNew != null) this.Commands[e.RowIndex] = new CommandWrapper(cNew);
+        }
+
+        private void PasteButton_Click(object sender, EventArgs e)
+        {
+            this.Paste(Clipboard.GetText());
+        }
+
+        private void CommandsDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                this.Paste(Clipboard.GetText());
+            }
+        }
+        private void Paste(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return;
+            int currentRow = CommandsDataGridView.CurrentCell.RowIndex;
+            string[] s_rows = s.Replace("\r\n", "\n").Split(new[] { '\n', '\r' });
+
+            foreach (var commandString in s_rows)
+            {
+                try
+                {
+                    var cw = new CommandWrapper(commandString);
+                    this.Commands.Insert(CommandsDataGridView.CurrentCell.RowIndex, cw);
+                    this.CommandsDataGridView.OffsetSelectedRange(1, 0);
+                }
+                catch (ArgumentException)
+                {
+                    continue;
+                }
+            }
         }
         #endregion
     }

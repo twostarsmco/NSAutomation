@@ -30,13 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.CommandsDataGridView = new System.Windows.Forms.DataGridView();
-            this.AddButton = new System.Windows.Forms.Button();
             this.InsertButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.PasteButton = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
             this.textDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commandWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.CommandsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandWrapperBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -63,17 +64,7 @@
             this.CommandsDataGridView.Size = new System.Drawing.Size(400, 270);
             this.CommandsDataGridView.TabIndex = 0;
             this.CommandsDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CommandsDataGridView_CellDoubleClick);
-            // 
-            // AddButton
-            // 
-            this.AddButton.Location = new System.Drawing.Point(3, 3);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(23, 23);
-            this.AddButton.TabIndex = 1;
-            this.AddButton.Text = "Add";
-            this.toolTip1.SetToolTip(this.AddButton, "Add");
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            this.CommandsDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CommandsDataGridView_KeyDown);
             // 
             // InsertButton
             // 
@@ -108,6 +99,27 @@
             this.EditButton.UseVisualStyleBackColor = true;
             this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
+            // PasteButton
+            // 
+            this.PasteButton.Location = new System.Drawing.Point(3, 119);
+            this.PasteButton.Name = "PasteButton";
+            this.PasteButton.Size = new System.Drawing.Size(23, 23);
+            this.PasteButton.TabIndex = 3;
+            this.PasteButton.Text = "Paste";
+            this.PasteButton.UseVisualStyleBackColor = true;
+            this.PasteButton.Click += new System.EventHandler(this.PasteButton_Click);
+            // 
+            // AddButton
+            // 
+            this.AddButton.Location = new System.Drawing.Point(3, 3);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(23, 23);
+            this.AddButton.TabIndex = 1;
+            this.AddButton.Text = "Add";
+            this.toolTip1.SetToolTip(this.AddButton, "Add");
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
             // textDataGridViewTextBoxColumn
             // 
             this.textDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -126,13 +138,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.EditButton);
+            this.Controls.Add(this.PasteButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.InsertButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CommandsDataGridView);
             this.Name = "MacroDesigner";
             this.Size = new System.Drawing.Size(435, 276);
-            this.Load += new System.EventHandler(this.MacroDesigner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CommandsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandWrapperBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -149,5 +161,6 @@
         private System.Windows.Forms.BindingSource commandWrapperBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn textDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button PasteButton;
     }
 }

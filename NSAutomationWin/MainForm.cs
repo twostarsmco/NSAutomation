@@ -167,6 +167,5 @@ namespace NSAutomationWin
                 MessageBox.Show(ex.ToString(), "Failed to load a file", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }
