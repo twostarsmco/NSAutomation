@@ -5,5 +5,8 @@ The aim of this software is to provide easy way to automate various kinds of gam
 
 
 # TODO
-- Do a POC
-- Create Windows GUI
+- Improve stability of GUI
+- Localization
+- Add UI to control sticks
+- Add keyboard shortcuts to operate buttons
+- Synchronize input timing to 60FPS
