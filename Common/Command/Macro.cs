@@ -14,29 +14,35 @@ namespace Command
         /// <summary>
         /// A sequence of ICommand this instance represents.
         /// </summary>
-        public IReadOnlyList<ICommand> Commands;
+        public IReadOnlyList<CommandBase> Commands;
 
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="commands">A sequence of ICommand to execute.</param>
-        public Macro(IList<ICommand> commands)//, string location)
+        public Macro(IList<CommandBase> commands)//, string location)
         {
-            this.Commands = commands.ToArray() ?? new ICommand[] { };
+            this.Commands = commands.ToArray() ?? new CommandBase[] { };
         }
+
+
+        /// <summary>
+        /// The title of this macro. Give it a good name.
+        /// </summary>
+        public string Title { get; set; } = "";
 
 
         /// <summary>
         /// The description of this macro.
         /// Write usage, prerequisite, cautions etc. here.
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
 
         //TODO: implement macro that calls another macro
-        public IList<ICommand> Flatten()
+        public IList<CommandBase> Flatten()
         {
-            List<ICommand> commandsFlat = new List<ICommand>();
+            List<CommandBase> commandsFlat = new List<CommandBase>();
             foreach (var command in this.Commands)
             {
                 commandsFlat.Add(command);
@@ -50,18 +56,46 @@ namespace Command
             return string.Join("\r\n", this.Commands.Select(command => command.ToString()));
         }
 
+
+        /// <summary>
+        /// Generates JSON string from this instance.
+        /// </summary>
+        /// <param name="settings">Specifies the way JSON string is structured.
+        /// If not specified, default setting is used.
+        /// Beware that some non-default setting may generate incompatible JSON string.
+        /// Refer to docs of Newtonsoft.Json.JsonSerializerSettings for details.
+        /// </param>
+        /// <returns></returns>
         public string ToJSON(JsonSerializerSettings settings = null)
         {
-            settings = settings ?? new JsonSerializerSettings() { Formatting = Formatting.Indented };
+            settings = settings ?? new JsonSerializerSettings()
+            {
+                Formatting = Formatting.Indented,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.None
+            };
             
-            settings.TypeNameHandling = TypeNameHandling.Auto;
             return JsonConvert.SerializeObject(this, settings);
         }
 
-        public static Macro FromJSON(string json)
+
+        /// <summary>
+        /// Create an instance of this class from given JSON string.
+        /// </summary>
+        /// <param name="json">A JSON string to generate from.</param>
+        /// <param name="settings">Specifies the way JSON string is deserialized.
+        /// If not specified, default setting is used.
+        /// Beware that some non-default setting may generate incompatible JSON string.
+        /// Refer to docs of Newtonsoft.Json.JsonSerializerSettings for details.</param>
+        /// <returns></returns>
+        public static Macro FromJSON(string json, JsonSerializerSettings settings = null)
         {
-            return JsonConvert.DeserializeObject<Macro>(
-                json, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto });
+            settings = settings ?? new JsonSerializerSettings()
+            {
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.None
+            };
+            return JsonConvert.DeserializeObject<Macro>(json, settings);
         }
     }
 }

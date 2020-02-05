@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 
 namespace Command
 {
+    [JsonConverter(typeof(Converter.OperateStickConverter))]
     public class OperateStick : OperateCommandBase
     {
         private byte[] commandBytes;

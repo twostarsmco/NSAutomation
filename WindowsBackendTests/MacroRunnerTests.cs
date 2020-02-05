@@ -10,7 +10,7 @@ namespace WindowsBackend.Tests
         [TestMethod()]
         public async Task RunAsyncTest()
         {
-            var m = new Macro(new ICommand[] {
+            var m = new Macro(new CommandBase[] {
                 new OperateButton(ButtonID.A, ButtonState.PRESS),
                 new Wait(100),
                 new OperateButton(ButtonID.A, ButtonState.RELEASE),

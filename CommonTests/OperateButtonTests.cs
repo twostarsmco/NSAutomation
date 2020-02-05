@@ -14,7 +14,7 @@ namespace CommonTests
         {
             OperateButton ob = new OperateButton(ButtonID.A, ButtonState.RELEASE);
             string obJson = JsonConvert.SerializeObject(ob);
-            var obFromJson = JsonConvert.DeserializeObject<OperateButton>(obJson);
+            var obFromJson = (OperateButton)JsonConvert.DeserializeObject<CommandBase>(obJson);
             Assert.AreEqual(ob.TargetControlID, obFromJson.TargetControlID);
             Assert.AreEqual(ob.TargetState, obFromJson.TargetState);
         }
