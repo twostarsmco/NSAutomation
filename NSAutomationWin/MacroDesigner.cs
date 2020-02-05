@@ -29,7 +29,7 @@ namespace NSAutomationWin
         {
             get
             { 
-                ICommand[] commands = this.Commands.Select(c => c.Command).ToArray();
+                CommandBase[] commands = this.Commands.Select(c => c.Command).ToArray();
                 var macro = new Macro(commands);
                 // TODO: Insert Description property here
 

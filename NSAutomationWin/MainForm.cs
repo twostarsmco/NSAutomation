@@ -82,7 +82,7 @@ namespace NSAutomationWin
             Macro macro;
             if (e.IsOnePush)
             {
-                macro = new Macro(new ICommand[]
+                macro = new Macro(new CommandBase[]
                 {
                 new OperateButton(e.ButtonID, Command.ButtonState.PRESS),
                 new Wait(30),
@@ -91,7 +91,7 @@ namespace NSAutomationWin
             }
             else
             {
-                macro = new Macro(new ICommand[] { new OperateButton(e.ButtonID, e.ButtonState) });
+                macro = new Macro(new CommandBase[] { new OperateButton(e.ButtonID, e.ButtonState) });
             }
             await this.Runner.RunAsync(macro, new CancellationToken(), 1);
         }
@@ -142,13 +142,8 @@ namespace NSAutomationWin
                     sfd.ShowDialog();
                     if (sfd.FileName != "")
                     {
-                        var jss = new JsonSerializerSettings()
-                        {
-                            TypeNameHandling = TypeNameHandling.Auto,
-                            Formatting = Formatting.Indented
-                        };
                         var macro = macroDesigner1.CurrentMacro;
-                        string macroJson = JsonConvert.SerializeObject(macro, jss);
+                        string macroJson = macro.ToJSON();
                         File.WriteAllText(sfd.FileName, macroJson);
                     }
                 }
@@ -172,8 +167,7 @@ namespace NSAutomationWin
 
                     macroJson = File.ReadAllText(ofd.FileName);
                 }
-                var macro = JsonConvert.DeserializeObject<Macro>(
-                    macroJson,new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+                var macro = Macro.FromJSON(macroJson);
                 this.macroDesigner1.CurrentMacro = macro;
             }
             catch (Exception ex)

@@ -18,7 +18,7 @@ namespace CommonTests
         {
             OperateStick os = new OperateStick(StickID.RSTICK, StickAngle.MAX, StickAngle.NEUTRAL);
             string obJson = JsonConvert.SerializeObject(os);
-            var obFromJson = JsonConvert.DeserializeObject<OperateStick>(obJson);
+            var obFromJson = (OperateStick)JsonConvert.DeserializeObject<CommandBase>(obJson);
 
             Assert.AreEqual(os.TargetControlID, obFromJson.TargetControlID);
             Assert.AreEqual(os.TargetXAngle, obFromJson.TargetXAngle);

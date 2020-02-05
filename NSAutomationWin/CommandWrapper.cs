@@ -17,7 +17,7 @@ namespace NSAutomationWin
         /// <summary>
         /// An instance of ICommand that this instance holds.
         /// </summary>
-        public ICommand Command;
+        public CommandBase Command;
 
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace NSAutomationWin
         /// Initializes a new instance, holding specified ICommand object.
         /// </summary>
         /// <param name="command"></param>
-        public CommandWrapper(ICommand command)
+        public CommandWrapper(CommandBase command)
         { this.Command = command; }
 
 
@@ -45,7 +45,7 @@ namespace NSAutomationWin
             string CleanCommaAndParenthesis(string s) => s.Replace(",", "").Replace("(", "").Replace(")", "");
 
             ArgumentException ae = new ArgumentException("Failed to parse parameter.", "commandToString");
-            ICommand command;
+            CommandBase command;
             try
             {
                 string[] elements = commandString.Split(' ');
