@@ -39,7 +39,7 @@ namespace CommonTests
         [TestMethod()]
         public void ToStringTest()
         {
-            var pressA = new Macro(new ICommand[] {
+            var pressA = new Macro(new CommandBase[] {
                 new OperateButton(ButtonID.A, ButtonState.PRESS),
                 new OperateButton(ButtonID.A, ButtonState.RELEASE)
             });
@@ -53,7 +53,7 @@ namespace CommonTests
         /// <returns></returns>
         private static Macro GetKONAMICommand()
         {
-            var konami = new ICommand[] {
+            var konami = new CommandBase[] {
                 new OperateButton(ButtonID.UP,      ButtonState.PRESS),
                 new OperateButton(ButtonID.UP,      ButtonState.RELEASE),
                 new OperateButton(ButtonID.UP,      ButtonState.PRESS),

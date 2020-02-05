@@ -1,11 +1,14 @@
 ﻿using System;
 using Newtonsoft.Json;
 
+using Command.Converter;
+
 namespace Command
 {
     /// <summary>
     /// A class that represents an operation of pressing, or releasing a button.
     /// </summary>
+    [JsonConverter(typeof(OperateButtonConverter))]
     public class OperateButton : OperateCommandBase
     {
         /// <summary>

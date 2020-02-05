@@ -6,7 +6,7 @@ namespace Command
     /// An abstract class that represents an operation
     /// that involves sending array of bytes to Arduino.
     /// </summary>
-    public abstract class OperateCommandBase: ICommand
+    public abstract class OperateCommandBase: CommandBase
     {
         public byte TargetControlID { get; private set; }
 

@@ -18,7 +18,7 @@ namespace CommonTests
         {
             var waitCommand = new Wait(151);
             string waitJson = JsonConvert.SerializeObject(waitCommand);
-            var waitFromJson = JsonConvert.DeserializeObject<Wait>(waitJson);
+            var waitFromJson = (Wait)JsonConvert.DeserializeObject<CommandBase>(waitJson);
 
             Assert.AreEqual(waitCommand.WaitTime, waitFromJson.WaitTime);
         }

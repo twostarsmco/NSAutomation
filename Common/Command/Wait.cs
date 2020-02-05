@@ -1,10 +1,13 @@
-﻿namespace Command
+﻿using Newtonsoft.Json;
+
+namespace Command
 {
     /// <summary>
     /// A command that halts the execution of following command 
     /// for specified duration of time.
     /// </summary>
-    public class Wait : ICommand
+    [JsonConverter(typeof(Converter.WaitConverter))]
+    public class Wait : CommandBase
     {
         /// <summary>
         /// The number of milliseconds to wait

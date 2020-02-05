@@ -24,7 +24,7 @@ namespace NSAutomationWin
         /// A ICommand instance being edited on this form.
         /// This is updated based on form's state, only when OK button is pressed.
         /// </summary>
-        public ICommand EditedCommand;
+        public CommandBase EditedCommand;
 
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace NSAutomationWin
         /// Instantinate this form with given command displayed.
         /// </summary>
         /// <param name="commandToEdit">A command to edit. Initially displayed as-is on this form.</param>
-        public CommandEditDialog(ICommand commandToEdit)
+        public CommandEditDialog(CommandBase commandToEdit)
         {
             InitializeComponent();
 
@@ -134,7 +134,7 @@ namespace NSAutomationWin
         /// then returns a command that is edited on it.
         /// </summary>
         /// <returns>An instance of ICommand. Returns null if cancel button is pressed.</returns>
-        public static ICommand CreateNewCommandFromDialog()
+        public static CommandBase CreateNewCommandFromDialog()
         {
             return CreateNewCommandFromDialog(new Wait(0));
         }
@@ -146,7 +146,7 @@ namespace NSAutomationWin
         /// </summary>
         /// <param name="existingCommand"></param>
         /// <returns>An instance of ICommand. Returns null if cancel button is pressed.</returns>
-        public static ICommand CreateNewCommandFromDialog(ICommand existingCommand)
+        public static CommandBase CreateNewCommandFromDialog(CommandBase existingCommand)
         {
             using (var dialog = new CommandEditDialog(existingCommand))
             {
