@@ -31,8 +31,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ZL = new NSAutomationWin.ButtonStateSelector();
             this.L = new NSAutomationWin.ButtonStateSelector();
-            this.ZR = new NSAutomationWin.ButtonStateSelector();
-            this.R = new NSAutomationWin.ButtonStateSelector();
             this.RClick = new NSAutomationWin.ButtonStateSelector();
             this.Y = new NSAutomationWin.ButtonStateSelector();
             this.B = new NSAutomationWin.ButtonStateSelector();
@@ -45,8 +43,12 @@
             this.LClick = new NSAutomationWin.ButtonStateSelector();
             this.Left = new NSAutomationWin.ButtonStateSelector();
             this.Up = new NSAutomationWin.ButtonStateSelector();
+            this.R = new NSAutomationWin.ButtonStateSelector();
+            this.ZR = new NSAutomationWin.ButtonStateSelector();
             this.Capture = new NSAutomationWin.ButtonStateSelector();
             this.Home = new NSAutomationWin.ButtonStateSelector();
+            this.LStickStateSelector = new NSAutomationWin.StickStateSelector();
+            this.RStickStateSelector = new NSAutomationWin.StickStateSelector();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,9 +82,11 @@
             this.tableLayoutPanel1.Controls.Add(this.ZR, 7, 0);
             this.tableLayoutPanel1.Controls.Add(this.Capture, 3, 7);
             this.tableLayoutPanel1.Controls.Add(this.Home, 5, 7);
+            this.tableLayoutPanel1.Controls.Add(this.LStickStateSelector, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.RStickStateSelector, 6, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
@@ -107,7 +111,7 @@
             this.ZL.ShortcutKey = System.Windows.Forms.Keys.None;
             this.ZL.Size = new System.Drawing.Size(55, 55);
             this.ZL.TabIndex = 6;
-            this.ZL.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.ZL.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // L
             // 
@@ -120,33 +124,7 @@
             this.L.ShortcutKey = System.Windows.Forms.Keys.None;
             this.L.Size = new System.Drawing.Size(55, 55);
             this.L.TabIndex = 7;
-            this.L.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
-            // 
-            // ZR
-            // 
-            this.ZR.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ZR.ButtonID = Command.ButtonID.ZR;
-            this.ZR.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ZR.Location = new System.Drawing.Point(375, 2);
-            this.ZR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ZR.Name = "ZR";
-            this.ZR.ShortcutKey = System.Windows.Forms.Keys.None;
-            this.ZR.Size = new System.Drawing.Size(55, 55);
-            this.ZR.TabIndex = 4;
-            this.ZR.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
-            // 
-            // R
-            // 
-            this.R.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.R.ButtonID = Command.ButtonID.R;
-            this.R.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.R.Location = new System.Drawing.Point(434, 2);
-            this.R.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.R.Name = "R";
-            this.R.ShortcutKey = System.Windows.Forms.Keys.None;
-            this.R.Size = new System.Drawing.Size(60, 55);
-            this.R.TabIndex = 5;
-            this.R.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.L.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // RClick
             // 
@@ -159,7 +137,7 @@
             this.RClick.ShortcutKey = System.Windows.Forms.Keys.None;
             this.RClick.Size = new System.Drawing.Size(55, 55);
             this.RClick.TabIndex = 12;
-            this.RClick.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.RClick.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // Y
             // 
@@ -172,7 +150,7 @@
             this.Y.ShortcutKey = System.Windows.Forms.Keys.None;
             this.Y.Size = new System.Drawing.Size(55, 55);
             this.Y.TabIndex = 14;
-            this.Y.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.Y.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // B
             // 
@@ -185,7 +163,7 @@
             this.B.ShortcutKey = System.Windows.Forms.Keys.None;
             this.B.Size = new System.Drawing.Size(55, 55);
             this.B.TabIndex = 16;
-            this.B.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.B.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // A
             // 
@@ -198,7 +176,7 @@
             this.A.ShortcutKey = System.Windows.Forms.Keys.None;
             this.A.Size = new System.Drawing.Size(60, 55);
             this.A.TabIndex = 15;
-            this.A.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.A.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // X
             // 
@@ -211,7 +189,7 @@
             this.X.ShortcutKey = System.Windows.Forms.Keys.None;
             this.X.Size = new System.Drawing.Size(55, 55);
             this.X.TabIndex = 13;
-            this.X.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.X.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // Plus
             // 
@@ -224,7 +202,7 @@
             this.Plus.ShortcutKey = System.Windows.Forms.Keys.None;
             this.Plus.Size = new System.Drawing.Size(55, 55);
             this.Plus.TabIndex = 10;
-            this.Plus.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.Plus.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // Minus
             // 
@@ -237,7 +215,7 @@
             this.Minus.ShortcutKey = System.Windows.Forms.Keys.None;
             this.Minus.Size = new System.Drawing.Size(55, 55);
             this.Minus.TabIndex = 11;
-            this.Minus.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.Minus.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // Down
             // 
@@ -250,7 +228,7 @@
             this.Down.ShortcutKey = System.Windows.Forms.Keys.None;
             this.Down.Size = new System.Drawing.Size(55, 60);
             this.Down.TabIndex = 3;
-            this.Down.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.Down.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // Right
             // 
@@ -263,7 +241,7 @@
             this.Right.ShortcutKey = System.Windows.Forms.Keys.None;
             this.Right.Size = new System.Drawing.Size(55, 55);
             this.Right.TabIndex = 1;
-            this.Right.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.Right.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // LClick
             // 
@@ -276,7 +254,7 @@
             this.LClick.ShortcutKey = System.Windows.Forms.Keys.None;
             this.LClick.Size = new System.Drawing.Size(55, 55);
             this.LClick.TabIndex = 17;
-            this.LClick.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.LClick.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // Left
             // 
@@ -289,7 +267,7 @@
             this.Left.ShortcutKey = System.Windows.Forms.Keys.None;
             this.Left.Size = new System.Drawing.Size(55, 55);
             this.Left.TabIndex = 2;
-            this.Left.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.Left.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // Up
             // 
@@ -302,7 +280,33 @@
             this.Up.ShortcutKey = System.Windows.Forms.Keys.None;
             this.Up.Size = new System.Drawing.Size(55, 55);
             this.Up.TabIndex = 0;
-            this.Up.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.Up.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            // 
+            // R
+            // 
+            this.R.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.R.ButtonID = Command.ButtonID.R;
+            this.R.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.R.Location = new System.Drawing.Point(434, 2);
+            this.R.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.R.Name = "R";
+            this.R.ShortcutKey = System.Windows.Forms.Keys.None;
+            this.R.Size = new System.Drawing.Size(60, 55);
+            this.R.TabIndex = 5;
+            this.R.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            // 
+            // ZR
+            // 
+            this.ZR.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ZR.ButtonID = Command.ButtonID.ZR;
+            this.ZR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ZR.Location = new System.Drawing.Point(375, 2);
+            this.ZR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ZR.Name = "ZR";
+            this.ZR.ShortcutKey = System.Windows.Forms.Keys.None;
+            this.ZR.Size = new System.Drawing.Size(55, 55);
+            this.ZR.TabIndex = 4;
+            this.ZR.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // Capture
             // 
@@ -315,7 +319,7 @@
             this.Capture.ShortcutKey = System.Windows.Forms.Keys.None;
             this.Capture.Size = new System.Drawing.Size(55, 60);
             this.Capture.TabIndex = 9;
-            this.Capture.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.Capture.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
             // 
             // Home
             // 
@@ -328,14 +332,34 @@
             this.Home.ShortcutKey = System.Windows.Forms.Keys.None;
             this.Home.Size = new System.Drawing.Size(55, 60);
             this.Home.TabIndex = 8;
-            this.Home.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            this.Home.StickClickStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.OnAnyButtonStateChanged);
+            // 
+            // LStickStateSelector
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.LStickStateSelector, 3);
+            this.LStickStateSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LStickStateSelector.Location = new System.Drawing.Point(3, 62);
+            this.LStickStateSelector.Name = "LStickStateSelector";
+            this.tableLayoutPanel1.SetRowSpan(this.LStickStateSelector, 3);
+            this.LStickStateSelector.Size = new System.Drawing.Size(171, 171);
+            this.LStickStateSelector.TabIndex = 18;
+            // 
+            // RStickStateSelector
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.RStickStateSelector, 3);
+            this.RStickStateSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RStickStateSelector.Location = new System.Drawing.Point(317, 247);
+            this.RStickStateSelector.Name = "RStickStateSelector";
+            this.tableLayoutPanel1.SetRowSpan(this.RStickStateSelector, 3);
+            this.RStickStateSelector.Size = new System.Drawing.Size(176, 176);
+            this.RStickStateSelector.TabIndex = 19;
             // 
             // JCPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "JCPanel";
             this.Size = new System.Drawing.Size(496, 426);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -364,5 +388,7 @@
         private ButtonStateSelector B;
         private ButtonStateSelector Right;
         private ButtonStateSelector LClick;
+        private StickStateSelector LStickStateSelector;
+        private StickStateSelector RStickStateSelector;
     }
 }

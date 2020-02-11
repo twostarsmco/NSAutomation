@@ -23,6 +23,11 @@ namespace NSAutomationWin
         /// </summary>
         public event EventHandler<ButtonStateChangedEventArgs> ButtonStateChanged;
 
+        /// <summary>
+        /// A event raised when state of any one of stick's tilt is changed.
+        /// </summary>
+        public event EventHandler<ButtonStateChangedEventArgs> StickStateChanged;
+
         public JCPanel()
         {
             InitializeComponent();
