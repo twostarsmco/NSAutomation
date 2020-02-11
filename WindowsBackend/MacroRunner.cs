@@ -31,7 +31,7 @@ namespace WindowsBackend
         /// <param name="token">A CancellationToken to stop running macro.</param>
         /// <param name="loopCount">The numbre of loop. Infinitely loops if less than 1</param>
         /// <returns></returns>
-        public override async Task RunAsync(Macro macro, CancellationToken token, int loopCount)
+        public override async Task RunAsync(Macro macro, CancellationToken token, int loopCount = 1)
         {
             Semaphore.WaitOne();
 
@@ -64,5 +64,14 @@ namespace WindowsBackend
                 Semaphore.Release();
             }
         }
+
+
+        /// <summary>
+        /// Run a macro asynchronously.
+        /// This method cannot be cancelled from outside. use an overload with CancellationToken to do so.
+        /// </summary>
+        /// <param name="macro">A macro to run.</param>
+        /// <param name="loopCount">The numbre of loop. Infinitely loops if less than 1</param>
+        public override Task RunAsync(Macro macro, int loopCount = 1) { return this.RunAsync(macro, new CancellationToken(), loopCount); }
     }
 }

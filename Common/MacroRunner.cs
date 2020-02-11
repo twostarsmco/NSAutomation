@@ -34,6 +34,17 @@ namespace Common
         /// <param name="token">A CancellationToken to stop running macro.</param>
         /// <param name="loopCount">The numbre of loop. Infinitely loops if less than 1</param>
         /// <returns></returns>
-        public abstract Task RunAsync(Macro macro, CancellationToken token, int loopCount);
+        public abstract Task RunAsync(Macro macro, CancellationToken token, int loopCount = 1);
+
+
+        /// <summary>
+        /// Run a macro (hopefully) asynchronously.
+        /// This method cannot be cancelled from outside. use an overload with CancellationToken to do so.
+        /// </summary>
+        /// <param name="macro">A macro to run.</param>
+        /// <param name="token">A CancellationToken to stop running macro.</param>
+        /// <param name="loopCount">The numbre of loop. Infinitely loops if less than 1</param>
+        /// <returns></returns>
+        public abstract Task RunAsync(Macro macro, int loopCount = 1);
     }
 }
