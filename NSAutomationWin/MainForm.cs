@@ -54,7 +54,7 @@ namespace NSAutomationWin
         }
         private void SetLoopCountNumericUpDownEnabled()
         {
-            this.LoopCountNumericUpDown.Enabled = this.LoopCheckBox.Checked;
+            this.LoopCountNumericUpDown.Enabled = !this.LoopCheckBox.Checked;
         }
 
         private void SetPort(string comPortName) 
@@ -78,7 +78,7 @@ namespace NSAutomationWin
             this.CancellationToken = new CancellationTokenSource();
             var token = this.CancellationToken.Token;
 
-            int loopCount = this.LoopCheckBox.Checked? 0: 1;
+            int loopCount = this.LoopCheckBox.Checked? 0: (int)this.LoopCountNumericUpDown.Value;
             await this.Runner.RunAsync(macro, token, loopCount);  // TODO: show progress of macro
         }
 
@@ -179,13 +179,19 @@ namespace NSAutomationWin
             var checkbox = ((ToolStripButton)sender);
             if (checkbox.Checked)
             {
+                checkbox.Text = "Stop";
+                checkbox.Image = global::NSAutomationWin.Properties.Resources.Stop_16x;
                 await this.Run();
                 checkbox.CheckedChanged -= RunToolStripButton_CheckedChanged;
                 checkbox.Checked = false;
+                checkbox.Text = "Run";
+                checkbox.Image = global::NSAutomationWin.Properties.Resources.Run_16x;
                 checkbox.CheckedChanged += RunToolStripButton_CheckedChanged;
             }
             else
             {
+                checkbox.Text = "Run";
+                checkbox.Image = global::NSAutomationWin.Properties.Resources.Run_16x;
                 this.Cancel();
             }
         }
@@ -200,6 +206,5 @@ namespace NSAutomationWin
         {
             SetLoopCountNumericUpDownEnabled();
         }
-
     }
 }

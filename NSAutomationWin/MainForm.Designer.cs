@@ -164,6 +164,11 @@
             this.LoopCountNumericUpDown.Name = "LoopCountNumericUpDown";
             this.LoopCountNumericUpDown.Size = new System.Drawing.Size(120, 19);
             this.LoopCountNumericUpDown.TabIndex = 10;
+            this.LoopCountNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.LoopCountNumericUpDown.Visible = false;
             this.LoopCountNumericUpDown.EnabledChanged += new System.EventHandler(this.LoopCountNumericUpDown_EnabledChanged);
             // 
