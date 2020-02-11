@@ -21,7 +21,7 @@ namespace Command
         /// 
         /// </summary>
         /// <param name="commands">A sequence of ICommand to execute.</param>
-        public Macro(IList<CommandBase> commands)//, string location)
+        public Macro(params CommandBase[] commands)//, string location)
         {
             this.Commands = commands.ToArray() ?? new CommandBase[] { };
         }
