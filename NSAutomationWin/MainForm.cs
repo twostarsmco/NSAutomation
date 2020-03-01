@@ -83,10 +83,10 @@ namespace NSAutomationWin
         }
 
 
-        private async void Cancel()
+        private void Cancel()
         {
             this.CancellationToken.Cancel();
-            await this.Runner.RunAsync(MacroExamples.NeutralizeAllInput);
+            //await this.Runner.RunAsync(MacroExamples.NeutralizeAllInput);
         }
 
 
