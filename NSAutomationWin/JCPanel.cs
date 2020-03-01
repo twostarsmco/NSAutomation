@@ -17,6 +17,12 @@ namespace NSAutomationWin
     /// </summary>
     public partial class JCPanel : UserControl
     {
+        /// <summary>
+        /// Whether this instance can raise Changed events
+        /// </summary>
+        private bool CanRaiseChangedEvents;
+
+
         // TODO: Control sticks
         /// <summary>
         /// A event raised when state of any one of button is changed.
@@ -31,18 +37,42 @@ namespace NSAutomationWin
         public JCPanel()
         {
             InitializeComponent();
+            this.CanRaiseChangedEvents = true;
         }
 
         private void OnAnyButtonStateChanged(object sender, ButtonStateChangedEventArgs e)
         {
-            ButtonStateChanged?.Invoke(this, e);
+            if (this.CanRaiseChangedEvents)
+            {
+                ButtonStateChanged?.Invoke(this, e);
+            }
         }
 
 
         private void OnAnyStickTiltChanged(object sender, StickStateChangedEventArgs e)
         {
-            StickStateChanged?.Invoke(this, e);
+            if (this.CanRaiseChangedEvents)
+            {
+                StickStateChanged?.Invoke(this, e);
+            }
         }
 
+        public void Reset()
+        {
+            this.CanRaiseChangedEvents = false;
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is ButtonStateSelector bss)
+                {
+                    bss.Reset();
+                }
+                else if (control is StickStateSelector sss)
+                {
+                    sss.Reset();
+                }
+            }
+            this.CanRaiseChangedEvents = true;
+        }
     }
 }

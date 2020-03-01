@@ -58,6 +58,16 @@ namespace NSAutomationWin
         /// </summary>
         public event EventHandler<ButtonStateChangedEventArgs> StateChanged;
 
+
+        /// <summary>
+        /// Reset states of this control.
+        /// </summary>
+        public void Reset()
+        {
+            this.ButtonStateSelectCheckBox.Checked = false;
+            this.HoldCheckBox.Checked = false;
+        }
+
         private void ButtonStateSelectCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Command.ButtonState newState =

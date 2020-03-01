@@ -57,6 +57,22 @@ namespace NSAutomationWin
         public event EventHandler<StickStateChangedEventArgs> StickTiltChanged;
 
 
+        /// <summary>
+        /// Reset states of this control.
+        /// </summary>
+        public void Reset()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is CheckBox checkBox)
+                {
+                    checkBox.Checked = false;
+                }
+                this.StickClickButton.Reset();
+            }
+
+        }
+
         private void StickClickButton_ButtonStateChanged(object sender, ButtonStateChangedEventArgs e)
         {
             StickClickStateChanged?.Invoke(this, e);

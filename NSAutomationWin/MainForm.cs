@@ -74,6 +74,8 @@ namespace NSAutomationWin
 
         private async Task Run()
         {
+            this.JC.Enabled = false;
+            this.JC.Reset();
             Macro macro = this.macroDesigner1.CurrentMacro;
             this.CancellationToken = new CancellationTokenSource();
             var token = this.CancellationToken.Token;
@@ -81,6 +83,7 @@ namespace NSAutomationWin
             int loopCount = this.LoopCheckBox.Checked? 0: (int)this.LoopCountNumericUpDown.Value;
             await this.Runner.RunAsync(macro, token, loopCount);  // TODO: show progress of macro
             await this.Runner.RunAsync(MacroExamples.NeutralizeAllInput);
+            this.JC.Enabled = true;
         }
 
 
