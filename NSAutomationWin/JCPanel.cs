@@ -61,7 +61,7 @@ namespace NSAutomationWin
         {
             this.CanRaiseChangedEvents = false;
 
-            foreach (Control control in this.Controls)
+            foreach (Control control in this.tableLayoutPanel.Controls)
             {
                 if (control is ButtonStateSelector bss)
                 {
