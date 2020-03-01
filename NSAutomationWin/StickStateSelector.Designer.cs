@@ -188,6 +188,7 @@
             this.StickClickButton.ShortcutKey = System.Windows.Forms.Keys.None;
             this.StickClickButton.Size = new System.Drawing.Size(62, 62);
             this.StickClickButton.TabIndex = 42;
+            this.StickClickButton.StateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.StickClickButton_ButtonStateChanged);
             // 
             // StickStateSelector
             // 

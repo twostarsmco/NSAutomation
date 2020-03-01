@@ -9,27 +9,35 @@ namespace NSAutomationWin
 {
     public partial class StickStateSelector : UserControl
     {
-        /// <summary>
-        /// An ID of button this instance controls.
-        /// </summary>
-        public StickID StickID { get; }
+ 
+        private StickID stickID;
 
+        /// <summary>
+        /// An ID of stick this instance controls.
+        /// </summary>
+        public StickID StickID
+        {
+            get { return this.stickID; }
+            set
+            {
+                this.stickID = value;
+                switch (this.StickID)
+                {
+                    case StickID.RSTICK:
+                        this.StickClickButton.ButtonID = ButtonID.RCLICK;
+                        break;
+                    case StickID.LSTICK:
+                        this.StickClickButton.ButtonID = ButtonID.LCLICK;
+                        break;
+                }
+            }
+        }
         private CheckBox[] Directions;
 
         public StickStateSelector()
         {
             InitializeComponent();
             this.Layout.BorderStyle = BorderStyle.FixedSingle;
-
-            switch (this.StickID)
-            {
-                case StickID.RSTICK:
-                    this.StickClickButton.ButtonID = ButtonID.RCLICK;
-                    break;
-                case StickID.LSTICK:
-                    this.StickClickButton.ButtonID = ButtonID.LCLICK;
-                    break;
-            }
 
             this.Directions = new CheckBox[]
             {

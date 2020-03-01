@@ -56,7 +56,7 @@ namespace NSAutomationWin
         /// <summary>
         /// A event raised when state of button on this control is changed.
         /// </summary>
-        public event EventHandler<ButtonStateChangedEventArgs> StickClickStateChanged;
+        public event EventHandler<ButtonStateChangedEventArgs> StateChanged;
 
         private void ButtonStateSelectCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -65,13 +65,13 @@ namespace NSAutomationWin
                 Command.ButtonState.PRESS : Command.ButtonState.RELEASE;
             if (this.HoldCheckBox.Checked)
             {
-                StickClickStateChanged?.Invoke(this, new ButtonStateChangedEventArgs(
+                StateChanged?.Invoke(this, new ButtonStateChangedEventArgs(
                     this.ButtonID, newState, isOnePush: false));
             }
             else
             {
                 var ea = new ButtonStateChangedEventArgs(this.ButtonID, Command.ButtonState.PRESS, isOnePush: true);
-                StickClickStateChanged?.Invoke(this, ea);
+                StateChanged?.Invoke(this, ea);
                 this.ButtonStateSelectCheckBox.CheckedChanged -= ButtonStateSelectCheckBox_CheckedChanged;
                 this.ButtonStateSelectCheckBox.Checked = false;
                 this.ButtonStateSelectCheckBox.CheckedChanged += ButtonStateSelectCheckBox_CheckedChanged;

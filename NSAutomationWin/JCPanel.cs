@@ -26,7 +26,7 @@ namespace NSAutomationWin
         /// <summary>
         /// A event raised when state of any one of stick's tilt is changed.
         /// </summary>
-        public event EventHandler<ButtonStateChangedEventArgs> StickStateChanged;
+        public event EventHandler<StickStateChangedEventArgs> StickStateChanged;
 
         public JCPanel()
         {
@@ -37,5 +37,12 @@ namespace NSAutomationWin
         {
             ButtonStateChanged?.Invoke(this, e);
         }
+
+
+        private void OnAnyStickTiltChanged(object sender, StickStateChangedEventArgs e)
+        {
+            StickStateChanged?.Invoke(this, e);
+        }
+
     }
 }
