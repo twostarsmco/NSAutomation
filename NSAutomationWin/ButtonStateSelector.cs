@@ -120,5 +120,13 @@ namespace NSAutomationWin
             { ButtonID.PLUS, "+" },
             { ButtonID.MINUS, "-" },
         };
+
+        private void HoldCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!HoldCheckBox.Checked)
+            {
+                this.ButtonStateSelectCheckBox.Checked = false;
+            }
+        }
     }
 }
