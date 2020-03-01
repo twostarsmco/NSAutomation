@@ -65,7 +65,6 @@ namespace NSAutomationWin
         public void Reset()
         {
             this.ButtonStateSelectCheckBox.Checked = false;
-            this.HoldCheckBox.Checked = false;
         }
 
         private void ButtonStateSelectCheckBox_CheckedChanged(object sender, EventArgs e)
