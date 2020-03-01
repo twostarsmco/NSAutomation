@@ -87,7 +87,6 @@ namespace NSAutomationWin
         private void Cancel()
         {
             this.CancellationToken.Cancel();
-            //await this.Runner.RunAsync(MacroExamples.NeutralizeAllInput);
         }
 
 
@@ -206,6 +205,13 @@ namespace NSAutomationWin
         private void LoopCountNumericUpDown_EnabledChanged(object sender, EventArgs e)
         {
             SetLoopCountNumericUpDownEnabled();
+        }
+
+        private async void JC_StickStateChanged(object sender, StickStateChangedEventArgs e)
+        {
+
+            Macro macro = new Macro(new CommandBase[] { new OperateStick(e.StickID, e.X, e.Y) });
+            await this.Runner.RunAsync(macro);
         }
     }
 }

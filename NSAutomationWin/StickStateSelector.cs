@@ -95,22 +95,22 @@ namespace NSAutomationWin
 
         private void UpCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox_CheckedChanged(sender, e, StickAngle.NEUTRAL, StickAngle.MAX);
+            CheckBox_CheckedChanged(sender, e, StickAngle.NEUTRAL, StickAngle.MIN);
         }
 
         private void URCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox_CheckedChanged(sender, e, StickAngle.NEUTRAL, StickAngle.MAX);
+            CheckBox_CheckedChanged(sender, e, StickAngle.MAX, StickAngle.MIN);
         }
 
         private void RightCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox_CheckedChanged(sender, e, StickAngle.NEUTRAL, StickAngle.MAX);
+            CheckBox_CheckedChanged(sender, e, StickAngle.MAX, StickAngle.NEUTRAL);
         }
 
         private void DRCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox_CheckedChanged(sender, e, StickAngle.NEUTRAL, StickAngle.MAX);
+            CheckBox_CheckedChanged(sender, e, StickAngle.MAX, StickAngle.MAX);
         }
 
         private void DownCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -120,17 +120,17 @@ namespace NSAutomationWin
 
         private void DLCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox_CheckedChanged(sender, e, StickAngle.NEUTRAL, StickAngle.MAX);
+            CheckBox_CheckedChanged(sender, e, StickAngle.MIN, StickAngle.MAX);
         }
 
         private void LeftCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox_CheckedChanged(sender, e, StickAngle.NEUTRAL, StickAngle.MAX);
+            CheckBox_CheckedChanged(sender, e, StickAngle.MIN, StickAngle.NEUTRAL);
         }
 
         private void ULCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox_CheckedChanged(sender, e, StickAngle.NEUTRAL, StickAngle.MAX);
+            CheckBox_CheckedChanged(sender, e, StickAngle.MIN, StickAngle.MIN);
         }
     }
 }

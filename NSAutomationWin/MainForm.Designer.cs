@@ -87,6 +87,7 @@
             this.JC.Size = new System.Drawing.Size(469, 407);
             this.JC.TabIndex = 9;
             this.JC.ButtonStateChanged += new System.EventHandler<NSAutomationWin.ButtonStateChangedEventArgs>(this.JC_ButtonStateChanged);
+            this.JC.StickStateChanged += new System.EventHandler<NSAutomationWin.StickStateChangedEventArgs>(this.JC_StickStateChanged);
             // 
             // LoopCheckBox
             // 
