@@ -80,6 +80,7 @@ namespace NSAutomationWin
 
             int loopCount = this.LoopCheckBox.Checked? 0: (int)this.LoopCountNumericUpDown.Value;
             await this.Runner.RunAsync(macro, token, loopCount);  // TODO: show progress of macro
+            await this.Runner.RunAsync(MacroExamples.NeutralizeAllInput);
         }
 
 
