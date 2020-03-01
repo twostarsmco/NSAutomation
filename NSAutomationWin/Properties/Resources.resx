@@ -118,31 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AddRowToAbove_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddRowToAbove_16x.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="AddBottomFrame_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddBottomFrame_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AddRowToBelow_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddRowToBelow_16x.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="Copy_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Copy_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AddRow_16x_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddRow_16x_24.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cut_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cut_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DeleteCommandColumn_ActionGray_16x_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DeleteCommandColumn_ActionGray_16x_24.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DeleteAllRows_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteAllRows_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EditFieldDialog_16x_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EditFieldDialog_16x_24.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DeleteTableRow_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteTableRow_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OpenFolder_16x_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OpenFolder_16x_24.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EditFieldDialog_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EditFieldDialog_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Paste_16x_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Paste_16x_24.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="InsertClause_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InsertClause_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Run_16x_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Run_16x_24.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OpenFolder_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpenFolder_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Save_16x_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save_16x_24.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Paste_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Paste_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Run_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Run_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Save_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Save_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stop_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stop_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

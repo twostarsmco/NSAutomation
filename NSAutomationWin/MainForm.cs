@@ -25,25 +25,37 @@ namespace NSAutomationWin
         public MainForm(Config config, IOutputPort port, MacroRunner runner)
         {
             InitializeComponent();
+            SetToolStripControls();
+            SetLoopCountNumericUpDownEnabled();
+
             this.Config = config;
             this.Port = port;
             this.Runner = runner;
 
             this.Config.AutoSave = true;
             //Set available SerialPorts
-            var cbxItems = this.PortSelectComboBox.Items;
+            var cbxItems = this.COMSelectToolStripComboBox.Items;
             cbxItems.Add("");
             cbxItems.AddRange(SerialPort.GetPortNames());
             if (config.Online && cbxItems.Contains(config.COMPort.ToString()))
             {
-                this.PortSelectComboBox.SelectedItem = config.COMPort.ToString();
+                this.COMSelectToolStripComboBox.SelectedItem = config.COMPort.ToString();
             }
             else
             {
-                this.PortSelectComboBox.SelectedItem = "";
+                this.COMSelectToolStripComboBox.SelectedItem = "";
             }
         }
 
+        private void SetToolStripControls()
+        {
+            this.MenuToolStrip.Items.Add(new ToolStripControlHost(this.LoopCheckBox) { Enabled = true });
+            this.MenuToolStrip.Items.Add(new ToolStripControlHost(this.LoopCountNumericUpDown) { Enabled = true });
+        }
+        private void SetLoopCountNumericUpDownEnabled()
+        {
+            this.LoopCountNumericUpDown.Enabled = !this.LoopCheckBox.Checked;
+        }
 
         private void SetPort(string comPortName) 
         {
@@ -62,12 +74,16 @@ namespace NSAutomationWin
 
         private async Task Run()
         {
+            this.JC.Enabled = false;
+            this.JC.Reset();
             Macro macro = this.macroDesigner1.CurrentMacro;
             this.CancellationToken = new CancellationTokenSource();
             var token = this.CancellationToken.Token;
 
-            int loopCount = this.LoopCheckBox.Checked? 0: 1;
+            int loopCount = this.LoopCheckBox.Checked? 0: (int)this.LoopCountNumericUpDown.Value;
             await this.Runner.RunAsync(macro, token, loopCount);  // TODO: show progress of macro
+            await this.Runner.RunAsync(MacroExamples.NeutralizeAllInput);
+            this.JC.Enabled = true;
         }
 
 
@@ -93,12 +109,12 @@ namespace NSAutomationWin
             {
                 macro = new Macro(new CommandBase[] { new OperateButton(e.ButtonID, e.ButtonState) });
             }
-            await this.Runner.RunAsync(macro, new CancellationToken(), 1);
+            await this.Runner.RunAsync(macro);
         }
 
         private void PortSelectComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selected = this.PortSelectComboBox.SelectedItem.ToString();
+            string selected = this.COMSelectToolStripComboBox.SelectedItem.ToString();
             this.SetPort(selected);
             if (!(string.IsNullOrEmpty(selected)))
             {
@@ -115,24 +131,31 @@ namespace NSAutomationWin
         }
 
 
-        private async void RunCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
 
-            var checkbox = ((CheckBox)sender);
-            if (checkbox.Checked)
+
+        private void OpenToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
             {
-                await this.Run();
-                checkbox.CheckedChanged -= RunCheckBox_CheckedChanged;
-                checkbox.Checked = false;
-                checkbox.CheckedChanged += RunCheckBox_CheckedChanged;
+                string macroJson = "";
+                using (OpenFileDialog ofd = new OpenFileDialog()
+                { Filter = "JSON file|*.json|All Files|*.*" })
+                {
+                    ofd.ShowDialog();
+                    if (ofd.FileName == "") return;
+
+                    macroJson = File.ReadAllText(ofd.FileName);
+                }
+                var macro = Macro.FromJSON(macroJson);
+                this.macroDesigner1.CurrentMacro = macro;
             }
-            else
+            catch (Exception ex)
             {
-                this.Cancel();
+                MessageBox.Show(ex.ToString(), "Failed to load a file", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private void SaveToolStripButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -154,26 +177,44 @@ namespace NSAutomationWin
             }
         }
 
-        private void LoadButton_Click(object sender, EventArgs e)
+        private async void RunToolStripButton_CheckedChanged(object sender, EventArgs e)
         {
-            try
+            var checkbox = ((ToolStripButton)sender);
+            if (checkbox.Checked)
             {
-                string macroJson = "";
-                using (OpenFileDialog ofd = new OpenFileDialog()
-                { Filter = "JSON file|*.json|All Files|*.*" })
-                {
-                    ofd.ShowDialog();
-                    if (ofd.FileName == "") return;
+                checkbox.Text = "Stop";
+                checkbox.Image = global::NSAutomationWin.Properties.Resources.Stop_16x;
+                await this.Run();
+                checkbox.CheckedChanged -= RunToolStripButton_CheckedChanged;
+                checkbox.Checked = false;
+                checkbox.Text = "Run";
+                checkbox.Image = global::NSAutomationWin.Properties.Resources.Run_16x;
+                checkbox.CheckedChanged += RunToolStripButton_CheckedChanged;
+            }
+            else
+            {
+                checkbox.Text = "Run";
+                checkbox.Image = global::NSAutomationWin.Properties.Resources.Run_16x;
+                this.Cancel();
+            }
+        }
 
-                    macroJson = File.ReadAllText(ofd.FileName);
-                }
-                var macro = Macro.FromJSON(macroJson);
-                this.macroDesigner1.CurrentMacro = macro;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Failed to load a file", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        private void LoopCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            SetLoopCountNumericUpDownEnabled();
+        }
+
+
+        private void LoopCountNumericUpDown_EnabledChanged(object sender, EventArgs e)
+        {
+            SetLoopCountNumericUpDownEnabled();
+        }
+
+        private async void JC_StickStateChanged(object sender, StickStateChangedEventArgs e)
+        {
+
+            Macro macro = new Macro(new CommandBase[] { new OperateStick(e.StickID, e.X, e.Y) });
+            await this.Runner.RunAsync(macro);
         }
     }
 }

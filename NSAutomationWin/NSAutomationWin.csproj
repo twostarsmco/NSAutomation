@@ -100,6 +100,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StickStateChangedEventArgs.cs" />
+    <Compile Include="StickStateSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StickStateSelector.Designer.cs">
+      <DependentUpon>StickStateSelector.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ButtonStateSelector.resx">
       <DependentUpon>ButtonStateSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,20 +124,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <EmbeddedResource Include="StickStateSelector.resx">
+      <DependentUpon>StickStateSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CommandWrapper.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -151,37 +161,40 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AddRow_16x_24.bmp" />
+    <None Include="Resources\Save_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\EditFieldDialog_16x_24.bmp" />
+    <None Include="Resources\Run_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DeleteCommandColumn_ActionGray_16x_24.bmp" />
+    <None Include="Resources\Stop_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Paste_16x_24.bmp" />
+    <None Include="Resources\OpenFolder_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AddRowToBelow_16x.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Resources\EditFieldDialog_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AddRowToAbove_16x.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Resources\DeleteTableRow_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\OpenFolder_16x_24.bmp" />
+    <None Include="Resources\InsertClause_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Save_16x_24.bmp" />
+    <None Include="Resources\AddBottomFrame_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Run_16x_24.bmp" />
+    <None Include="Resources\Paste_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cut_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteAllRows_16x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

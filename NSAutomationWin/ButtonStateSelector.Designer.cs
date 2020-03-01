@@ -38,12 +38,14 @@
             // 
             this.HoldCheckBox.AutoSize = true;
             this.HoldCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HoldCheckBox.Location = new System.Drawing.Point(3, 178);
+            this.HoldCheckBox.Location = new System.Drawing.Point(2, 142);
+            this.HoldCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.HoldCheckBox.Name = "HoldCheckBox";
-            this.HoldCheckBox.Size = new System.Drawing.Size(194, 19);
+            this.HoldCheckBox.Size = new System.Drawing.Size(146, 16);
             this.HoldCheckBox.TabIndex = 0;
             this.HoldCheckBox.Text = "Hold";
             this.HoldCheckBox.UseVisualStyleBackColor = true;
+            this.HoldCheckBox.CheckedChanged += new System.EventHandler(this.HoldCheckBox_CheckedChanged);
             // 
             // ButtonStateSelectCheckBox
             // 
@@ -51,9 +53,9 @@
             this.ButtonStateSelectCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonStateSelectCheckBox.Location = new System.Drawing.Point(0, 0);
             this.ButtonStateSelectCheckBox.Margin = new System.Windows.Forms.Padding(0);
-            this.ButtonStateSelectCheckBox.MinimumSize = new System.Drawing.Size(20, 20);
+            this.ButtonStateSelectCheckBox.MinimumSize = new System.Drawing.Size(15, 16);
             this.ButtonStateSelectCheckBox.Name = "ButtonStateSelectCheckBox";
-            this.ButtonStateSelectCheckBox.Size = new System.Drawing.Size(200, 175);
+            this.ButtonStateSelectCheckBox.Size = new System.Drawing.Size(150, 140);
             this.ButtonStateSelectCheckBox.TabIndex = 1;
             this.ButtonStateSelectCheckBox.Text = "ButtonName";
             this.ButtonStateSelectCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -68,21 +70,23 @@
             this.Layout.Controls.Add(this.HoldCheckBox, 0, 1);
             this.Layout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Layout.Location = new System.Drawing.Point(0, 0);
+            this.Layout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Layout.Name = "Layout";
             this.Layout.RowCount = 2;
             this.Layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.Layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Layout.Size = new System.Drawing.Size(200, 200);
+            this.Layout.Size = new System.Drawing.Size(150, 160);
             this.Layout.TabIndex = 2;
             // 
             // ButtonStateSelector
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.Layout);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ButtonStateSelector";
-            this.Size = new System.Drawing.Size(200, 200);
+            this.Size = new System.Drawing.Size(150, 160);
             this.Layout.ResumeLayout(false);
             this.Layout.PerformLayout();
             this.ResumeLayout(false);
