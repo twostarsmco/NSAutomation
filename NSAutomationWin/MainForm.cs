@@ -74,16 +74,30 @@ namespace NSAutomationWin
 
         private async Task Run()
         {
-            this.JC.Enabled = false;
             this.JC.Reset();
-            Macro macro = this.macroDesigner1.CurrentMacro;
+            this.macroDesigner1.Enabled = false;
+            this.JC.Enabled = false;
+            this.OpenToolStripButton.Enabled = false;
+            this.SaveToolStripButton.Enabled = false;
+            this.COMSelectToolStripComboBox.Enabled = false;
+            this.LoopCheckBox.Enabled = false;
+            this.LoopCountNumericUpDown.Enabled = false;
+
             this.CancellationToken = new CancellationTokenSource();
             var token = this.CancellationToken.Token;
 
+            Macro macro = this.macroDesigner1.CurrentMacro;
             int loopCount = this.LoopCheckBox.Checked? 0: (int)this.LoopCountNumericUpDown.Value;
             await this.Runner.RunAsync(macro, token, loopCount);  // TODO: show progress of macro
             await this.Runner.RunAsync(MacroExamples.NeutralizeAllInput);
+
+            this.macroDesigner1.Enabled = true;
             this.JC.Enabled = true;
+            this.OpenToolStripButton.Enabled = true;
+            this.SaveToolStripButton.Enabled = true;
+            this.COMSelectToolStripComboBox.Enabled = true;
+            this.LoopCheckBox.Enabled = true;
+            this.LoopCountNumericUpDown.Enabled = true;
         }
 
 
@@ -112,7 +126,7 @@ namespace NSAutomationWin
             await this.Runner.RunAsync(macro);
         }
 
-        private void PortSelectComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void COMSelectToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = this.COMSelectToolStripComboBox.SelectedItem.ToString();
             this.SetPort(selected);
@@ -216,5 +230,6 @@ namespace NSAutomationWin
             Macro macro = new Macro(new CommandBase[] { new OperateStick(e.StickID, e.X, e.Y) });
             await this.Runner.RunAsync(macro);
         }
+
     }
 }

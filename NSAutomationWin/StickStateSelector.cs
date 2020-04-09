@@ -62,14 +62,11 @@ namespace NSAutomationWin
         /// </summary>
         public void Reset()
         {
-            foreach (Control control in this.Controls)
+            foreach (CheckBox checkBox in this.Directions)
             {
-                if (control is CheckBox checkBox)
-                {
-                    checkBox.Checked = false;
-                }
-                this.StickClickButton.Reset();
+                checkBox.Checked = false;
             }
+            this.StickClickButton.Reset();
 
         }
 

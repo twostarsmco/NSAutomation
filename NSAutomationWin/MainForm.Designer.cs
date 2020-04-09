@@ -144,6 +144,7 @@
             // 
             this.COMSelectToolStripComboBox.Name = "COMSelectToolStripComboBox";
             this.COMSelectToolStripComboBox.Size = new System.Drawing.Size(121, 25);
+            this.COMSelectToolStripComboBox.SelectedIndexChanged += new System.EventHandler(this.COMSelectToolStripComboBox_SelectedIndexChanged);
             // 
             // toolStripSeparator2
             // 
