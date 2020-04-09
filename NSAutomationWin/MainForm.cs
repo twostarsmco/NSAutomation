@@ -112,7 +112,7 @@ namespace NSAutomationWin
             await this.Runner.RunAsync(macro);
         }
 
-        private void PortSelectComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void COMSelectToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = this.COMSelectToolStripComboBox.SelectedItem.ToString();
             this.SetPort(selected);
@@ -216,5 +216,6 @@ namespace NSAutomationWin
             Macro macro = new Macro(new CommandBase[] { new OperateStick(e.StickID, e.X, e.Y) });
             await this.Runner.RunAsync(macro);
         }
+
     }
 }
