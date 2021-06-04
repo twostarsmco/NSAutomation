@@ -189,6 +189,7 @@ namespace NSAutomationWin
                 {
                     var cw = new CommandWrapper(commandString);
                     this.Commands.Insert(currentRow, cw);
+                    currentRow++;
                     this.CommandsDataGridView.OffsetSelectedRange(1, 0);
                 }
                 catch (ArgumentException)
